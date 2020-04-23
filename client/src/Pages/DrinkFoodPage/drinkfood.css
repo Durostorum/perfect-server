@@ -1,0 +1,36 @@
+h1{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 0px;
+}
+h2{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    padding-top: 40px;
+
+}
+.h1{
+    color:black;
+}
+
+.card1{
+    padding-top:10px;
+}
+.card2{
+   padding-top:20px;
+
+}
+.img-fluid{
+   height: 300px !important;
+}
+.aa{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+h6{
+    color:black;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    padding-top:10px;
+}

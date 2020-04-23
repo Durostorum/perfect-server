@@ -1,0 +1,16 @@
+li{
+    float: left;
+    
+}
+.card1{
+    float: left;
+    padding-left:5px;
+    padding-top: 20px;
+}
+.foodcategory{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+.img-fluid{
+    height: 300px !important;
+ }

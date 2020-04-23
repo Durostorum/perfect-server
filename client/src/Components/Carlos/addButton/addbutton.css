@@ -1,0 +1,9 @@
+.addbtn {
+  font-size: 30px;
+  padding-top: 18%;
+  margin-left: 20%;
+}
+.addbtn:hover {
+  color: green;
+  cursor: pointer;
+}
