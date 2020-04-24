@@ -34,11 +34,6 @@ class Detail extends Component {
     details: [],
   };
 
-  // toggleCollapse = (collapseID) => () =>
-  //   this.setState((prevState) => ({
-  //     collapseID: prevState.collapseID !== collapseID ? collapseID : "",
-  //   }));
-
   outside = (id) => {
     API.getDetails(id)
       .then((res) => {
@@ -99,14 +94,19 @@ class Detail extends Component {
     }
   };
 
-  displayMenu = () => {
-    let { current } = this.state;
-    this.setState({ details: [] }, this.outside(current));
-  };
+  // displayMenu = () => {
+  //   let { current } = this.state;
+  //   this.setState({ details: [] });
+  // };
 
   nextStep = () => {
     let { current, skipped, selectedSteps } = this.state;
-    this.setState({ result: [], current: current + 1, fullmenu: false });
+    this.setState({
+      result: [],
+      details: [],
+      current: current + 1,
+      fullmenu: false,
+    });
 
     // SHOWS CATEGORIES FROM WHICH WE HAVEN'T CHOSEN AN ITEM
     if (current >= 4 && skipped.length > 0) {
@@ -252,12 +252,11 @@ class Detail extends Component {
                     <MDBCardText>
                       <ul>
                         <a
-                          displayMenu={this.displayMenu}
-                          display={this.display}
+                          // displayMenu={this.displayMenu}
                           onClick={this.display}
                         >
                           <MDBIcon icon="bars" />
-                          Menu
+                          More {this.state.name}
                         </a>
                         {this.state.fullmenu && (
                           <List
