@@ -6,6 +6,7 @@ import ShoppingCart from "../../Components/Carlos";
 import List from "../../Components/Carlos/list";
 import Cart from "../../Components/Carlos/cart";
 import "../MainPage/MainPage.css";
+import DisplayButton from "../../Components/displayMenuButton";
 
 import {
   MDBBtn,
@@ -38,9 +39,76 @@ class Detail extends Component {
   //     collapseID: prevState.collapseID !== collapseID ? collapseID : "",
   //   }));
 
+  outside = (id) => {
+    API.getDetails(id)
+      .then((res) => {
+        this.setState({
+          result: [...this.state.result, res.data],
+          details: [...this.state.details, res.data],
+        });
+      })
+      .catch((err) => console.log(err));
+    console.log(this.state.result);
+  };
+
+  switchTwo = (step) => {
+    switch (step) {
+      case 1:
+        try {
+          this.state.moreApps.forEach((apps) => {
+            this.outside(apps);
+          });
+        } catch (err) {
+          console.log(err);
+        }
+        break;
+
+      case 2:
+        try {
+          this.state.moreMain.forEach((main) => {
+            this.outside(main);
+          });
+        } catch (err) {
+          console.log(err);
+        }
+        break;
+
+      case 3:
+        try {
+          this.state.moreDesserts.forEach((desert) => {
+            this.outside(desert);
+          });
+        } catch (err) {
+          console.log(err);
+        }
+        break;
+
+      case 4:
+        try {
+          this.state.moreDrinks.forEach((drink) => {
+            this.outside(drink);
+          });
+        } catch (err) {
+          console.log(err);
+        }
+        break;
+
+      default:
+        console.log("switch case default");
+        break;
+    }
+  };
+
+  displayMenu = () => {
+    let { current } = this.state;
+    this.setState({ details: [] }, this.outside(current));
+  };
+
   nextStep = () => {
     let { current, skipped, selectedSteps } = this.state;
-    this.setState({ result: [], currentStep: this.state.currentStep + 1 });
+    this.setState({ result: [], current: current + 1, fullmenu: false });
+
+    // SHOWS CATEGORIES FROM WHICH WE HAVEN'T CHOSEN AN ITEM
     if (current >= 4 && skipped.length > 0) {
       this.setState(
         {
@@ -134,29 +202,14 @@ class Detail extends Component {
     });
   }
 
-  outside = (id) => {
-    API.getDetails(id)
-      .then((res) => {
-        this.setState({ result: [...this.state.result, res.data] });
-      })
-      .catch((err) => console.log(err));
-    console.log(this.state.result);
-  };
-
   prevStep = () => {
     this.setState({ result: [] });
     const { current } = this.state;
-    const { selectedSteps } = this.state;
-    const reducedSteps = selectedSteps.filter((item) => {
-      return item !== current - 1;
-    });
+
     if (current !== 1) {
-      this.setState(
-        { current: current - 1, selectedSteps: reducedSteps },
-        () => {
-          this.switchIt(current - 1);
-        }
-      );
+      this.setState({ current: current - 1 }, () => {
+        this.switchIt(current - 1);
+      });
     } else {
       this.setState({ current: 4 }, () => {
         this.switchIt(4);
@@ -167,7 +220,6 @@ class Detail extends Component {
   addToCart = (item) => {
     const cart = [...this.state.cart, item];
     this.setState({ cart });
-    // this.props.next();
   };
 
   removeFromCart = (index) => {
@@ -199,15 +251,22 @@ class Detail extends Component {
 
                     <MDBCardText>
                       <ul>
-                        <a onClick={this.display}>
-                          <MDBIcon icon="bars" /> Full Menu{" "}
+                        <a
+                          displayMenu={this.displayMenu}
+                          display={this.display}
+                          onClick={this.display}
+                        >
+                          <MDBIcon icon="bars" />
+                          Menu
                         </a>
                         {this.state.fullmenu && (
                           <List
+                            details={this.state.details}
                             addToCart={this.addToCart}
                             next={this.nextStep}
                           />
                         )}
+
                         <a>
                           <MDBIcon icon="address-book" /> Reservations
                         </a>

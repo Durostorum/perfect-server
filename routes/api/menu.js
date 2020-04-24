@@ -3,9 +3,7 @@ const vsController = require("../../controllers/vsController");
 const foodController = require("../../controllers/foodController");
 
 // Matches with "/api/menu"
-router.route("/menu")
-  .get(vsController.findAll)
-  .post(vsController.create);
+router.route("/menu").get(vsController.findAll).post(vsController.create);
 
 // Matches with "/api/menu/:id"
 router
@@ -14,7 +12,6 @@ router
   .put(foodController.update)
   .delete(foodController.remove);
 
-  router.route("/:subcategories")
-  .get(vsController.findAll);
+router.route("/:subcategories").get(vsController.findAll);
 
 module.exports = router;
