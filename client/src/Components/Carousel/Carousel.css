@@ -1,50 +1,57 @@
+.youtube {
+  width: 980px;
+  height: 400px;
+}
 .cardone {
   text-align: center;
   background-color: rgba(4, 1, 1, 0.4);
   color: white;
-  /* margin-left: 30%; */
+  display: inline-block;
+  position: sticky;
+  margin-left: 15%;
 }
-.ctg-btn {
-  background-color: rgba(111, 84, 44, 04) !important;
-}
-.ctg-btn:hover {
-  background-color: green !important;
-  cursor: pointer;
+.carosel-container {
+  margin-left: 25%;
+  padding-top: 1%;
 }
 .item-name {
-  margin-right: 4%;
-  margin-left: 4%;
+  color: white;
 }
-.addicon {
+
+.arrow-icons {
   font-size: 40px;
 }
-.addicon2 {
-  font-size: 40px;
-  padding-left: 20px;
+.arrow-icons:hover {
+  color: #b5fa99;
+  cursor: pointer;
 }
-.addicon:hover {
-  color: green;
+.addbtn {
+  font-size: 30px;
+  padding-top: 3%;
+  padding-right: 80%;
 }
-.addicon2:hover {
-  color: green;
+.addbtn:hover {
+  color: #df5f49;
+  cursor: pointer;
 }
 .row {
   text-align: center !important ;
 }
 h5 {
-  padding-top: 10px;
   text-align: center;
   color: white;
+  padding-top: 4%;
+  /* margin: 5px 20px 5px 20px !important; */
 }
-/* .a {
-  float: left;
-} */
-.a:hover {
-  color: green;
-}
+
 .p {
-  padding-top: 10px;
+  text-align: center !important;
+  align-content: center;
+  margin: auto;
+  display: block;
   color: white;
+  font-size: 1.1rem;
+  width: 70%;
 }
 .parent {
   background-image: url("http://digitalimagemakerworld.com/images/peach-wallpaper/37756779-peach-wallpaper.jpg");

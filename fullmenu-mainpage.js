@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import Carousel from "../../Components/Carousel";
 import { Col, Row, Container } from "../../Components/Grid";
+import ShoppingCart from "../../Components/Carlos";
 import List from "../../Components/Carlos/list";
 import Cart from "../../Components/Carlos/cart";
 import "../MainPage/MainPage.css";
@@ -25,9 +26,7 @@ class Detail extends Component {
     currentSlide: 0,
     itemId: 0,
     cart: [],
-    partMenu: false,
-    fullMenu: false,
-    fullMenuResults: [],
+    fullmenu: false,
     collapseID: "",
     name: "",
     details: [],
@@ -35,81 +34,87 @@ class Detail extends Component {
     location: false,
   };
 
+  fetchMenu = () => {
+    API.fullMenu()
+      .then((res) => {
+        this.setState({
+          details: [...res.data],
+        });
+        console.log(
+          "FETCHING MENUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU",
+          this.state.details
+        );
+      })
+      .catch((err) => console.log(err));
+    console.log(this.state.result);
+  };
   outside = (id) => {
     API.getDetails(id)
       .then((res) => {
         this.setState({
           result: [...this.state.result, res.data],
-          details: [...this.state.details, res.data],
         });
       })
       .catch((err) => console.log(err));
     console.log(this.state.result);
   };
 
-  switchTwo = (step) => {
-    switch (step) {
-      case 1:
-        try {
-          this.state.moreApps.forEach((apps) => {
-            this.outside(apps);
-          });
-        } catch (err) {
-          console.log(err);
-        }
-        break;
+  // switchTwo = (step) => {
+  //   switch (step) {
+  //     case 1:
+  //       try {
+  //         this.state.moreApps.forEach((apps) => {
+  //           this.outside(apps);
+  //         });
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //       break;
 
-      case 2:
-        try {
-          this.state.moreMain.forEach((main) => {
-            this.outside(main);
-          });
-        } catch (err) {
-          console.log(err);
-        }
-        break;
+  //     case 2:
+  //       try {
+  //         this.state.moreMain.forEach((main) => {
+  //           this.outside(main);
+  //         });
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //       break;
 
-      case 3:
-        try {
-          this.state.moreDesserts.forEach((desert) => {
-            this.outside(desert);
-          });
-        } catch (err) {
-          console.log(err);
-        }
-        break;
+  //     case 3:
+  //       try {
+  //         this.state.moreDesserts.forEach((desert) => {
+  //           this.outside(desert);
+  //         });
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //       break;
 
-      case 4:
-        try {
-          this.state.moreDrinks.forEach((drink) => {
-            this.outside(drink);
-          });
-        } catch (err) {
-          console.log(err);
-        }
-        break;
+  //     case 4:
+  //       try {
+  //         this.state.moreDrinks.forEach((drink) => {
+  //           this.outside(drink);
+  //         });
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //       break;
 
-      default:
-        console.log("switch case default");
-        break;
-    }
-  };
-  displayLocation = () => {
-    const { location } = this.state;
-    this.setState({ location: !location });
-  };
-  displayMenu = () => {
-    this.setState({ details: [] });
-  };
+  //     default:
+  //       console.log("switch case default");
+  //       break;
+  //   }
+  // };
 
   nextStep = () => {
     let { current, skipped, selectedSteps } = this.state;
     this.setState({
       result: [],
-      details: [],
+      // details: [],
       current: current + 1,
       location: false,
-      partMenu: false,
+      fullmenu: false,
     });
 
     // SHOWS CATEGORIES FROM WHICH WE HAVEN'T CHOSEN AN ITEM
@@ -196,14 +201,17 @@ class Detail extends Component {
         break;
     }
   };
-
-  async componentDidMount() {
+  select = () => {};
+  componentWillMount = () => {
     let newState = this.props.location.state;
     console.log("Lets see", newState);
     let { current } = this.state;
     this.setState({ ...newState }, () => {
       this.switchIt(current);
     });
+  };
+  async componentDidMount() {
+    this.fetchMenu();
   }
 
   prevStep = () => {
@@ -231,45 +239,44 @@ class Detail extends Component {
     cart.splice(index, 1);
     this.setState({ cart });
   };
-
-  display = () => {
-    if (this.state.partMenu === false) {
-      const partMenu = true;
-      this.setState({ partMenu });
-    } else {
-      const partMenu = false;
-      this.setState({ partMenu });
-    }
+  displayLocation = () => {
+    const { location } = this.state;
+    !location
+      ? this.setState({ location: true })
+      : this.setState({ location: false });
   };
-  showCart = () => {
-    const { showCart } = this.state;
-    this.setState({ showCart: !showCart });
+  displayMenu = () => {
+    const { fullmenu } = this.state;
+    !fullmenu
+      ? this.setState({ fullmenu: true })
+      : this.setState({ fullmenu: false });
   };
   render() {
     return (
       <div className="body">
         <Container fluid>
-          <div>
+          <div className="box2">
             <Row>
               <Col size="md-2">
-                <MDBCard className="menucard">
-                  <MDBCardBody id="features-card">
+                <MDBCard className="menucard" style={{ width: "21rem" }}>
+                  <MDBCardBody>
                     <MDBCardTitle className="title">Features</MDBCardTitle>
 
                     <MDBCardText>
-                      <ul className="features-card-text">
-                        <a className="icon" onClick={this.display}>
-                          <MDBIcon icon="book-open" />
+                      <ul>
+                        <a onClick={this.displayMenu}>
+                          <MDBIcon icon="bars" />
+                          More {this.state.name}
                         </a>
-                        {this.state.partMenu && (
+                        {this.state.fullmenu && (
                           <List
                             details={this.state.details}
                             addToCart={this.addToCart}
                             next={this.nextStep}
                           />
                         )}
-                        <a className="icon" onClick={this.displayLocation}>
-                          <MDBIcon icon="globe-americas" />
+                        <a onClick={this.displayLocation}>
+                          <MDBIcon icon="globe-americas" /> Location
                         </a>
                         {this.state.location && (
                           <Location location={this.state.address} />
@@ -282,36 +289,27 @@ class Detail extends Component {
                           {" "}
                           <MDBIcon icon="user-check" /> Reviews
                         </a> */}
-                        <a className="icon">
-                          <MDBIcon icon="cocktail" />
+                        <a>
+                          <MDBIcon icon="cocktail" /> Happy Hour Menu
                         </a>
 
-                        <a className="icon">
+                        <a>
                           {" "}
-                          <MDBIcon icon="phone" />
+                          <MDBIcon icon="phone" /> Contact
                         </a>
-                        <a className="icon">
+                        <a>
                           {" "}
-                          <MDBIcon far icon="images" />
+                          <MDBIcon far icon="images" /> Gallery{" "}
                         </a>
-                        <a className="icon" onClick={this.showCart}>
-                          <MDBIcon icon="shopping-cart" />
-                        </a>
-                        {this.state.showCart && (
-                          <Cart
-                            items={this.state.cart}
-                            removeFromCart={this.removeFromCart}
-                          />
-                        )}
                       </ul>
                     </MDBCardText>
                   </MDBCardBody>
                 </MDBCard>
               </Col>
-
-              {/* Top features for: {this.state.name} */}
-              <div>
-                <Col size="md-10">
+              <h1 className="caro-row">
+                Top features for: {this.state.name}
+                {console.log(this.state.name, "NAME TEST")}
+                <Col size="sm-5">
                   <Carousel
                     next={this.nextStep}
                     addToCart={this.addToCart}
@@ -335,18 +333,22 @@ class Detail extends Component {
                     }
                   ></Carousel>
                 </Col>
-              </div>
-
-              {/* <Col size="3">
+              </h1>
+              <Col size="3">
                 <MDBCol className="">
                   <MDBCard className="cartcard">
                     <MDBCardBody>
-                      <MDBCardTitle className="cart-title">Cart</MDBCardTitle>
-                      <MDBCardText></MDBCardText>
+                      <MDBCardTitle className="title2">Cart</MDBCardTitle>
+                      <MDBCardText>
+                        <Cart
+                          items={this.state.cart}
+                          removeFromCart={this.removeFromCart}
+                        />
+                      </MDBCardText>
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>
-              </Col> */}
+              </Col>
             </Row>
           </div>
         </Container>

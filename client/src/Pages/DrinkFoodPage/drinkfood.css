@@ -1,36 +1,33 @@
-h1{
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    padding-top: 20px;
-    margin-bottom: 0px;
+h1 {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 0px;
 }
-h2{
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    padding-top: 40px;
+h2 {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  padding-top: 40px;
+}
+.h1 {
+  color: black;
+}
 
+.drink-food-card {
+  padding-top: 20px;
+  width: 26rem;
+  margin-right: 3%;
 }
-.h1{
-    color:black;
+.img-fluid {
+  height: 300px !important;
 }
-
-.card1{
-    padding-top:10px;
+.aa {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
 }
-.card2{
-   padding-top:20px;
-
-}
-.img-fluid{
-   height: 300px !important;
-}
-.aa{
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-}
-h6{
-    color:black;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    padding-top:10px;
+h6 {
+  color: black;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  padding-top: 10px;
 }

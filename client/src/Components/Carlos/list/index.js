@@ -1,27 +1,10 @@
 import React, { Component } from "react";
+import ModalList from "../../Modal";
 import AddButton from "../addButton";
 
-const items = [
-  { item: "Stella", type: "Drink", price: 8 },
-  { item: "Amber Waves", type: "Drink", price: 8 },
-  { item: "La Rubia", type: "Drink", price: 8 },
-  { item: "Dry Ribs", type: "App", price: 8 },
-  { item: "Lobster Tostadas", type: "App", price: 8 },
-  { item: "Queso Fondido", type: "App", price: 8 },
-  { item: "Cajun Chicken", type: "Entree", price: 8 },
-  { item: "NY Striploin", type: "Entree", price: 8 },
-  { item: "Sea Bass", type: "Entree", price: 8 },
-  { item: "Toffe Cake", type: "Desert", price: 8 },
-  { item: "Cheesecake", type: "Desert", price: 8 },
-  { item: "Keylime Pie", type: "Desert", price: 8 },
-];
-
-// item = item type = catergory for database
+import "./style.css";
 
 export default class List extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div id="items">
@@ -33,25 +16,27 @@ export default class List extends Component {
               <th>Type</th>
               <th>Price</th>
             </tr>
+
             {this.props.details.map((item, index) => {
-              {
-                console.log("WELCOME TO THE JUNGLE" + item.item);
-              }
               // eslint-disable-next-line no-unused-expressions
               return (
                 <tr key={index}>
                   <td>
-                    {/* <button onClick={()=> this.props.addToCart(item)}>Add to cart</button> */}
-                    {/* 
-        <AddButton addToCart={this.props.addToCart} item={item} id={index} onClick={this.props.handleClick}/> */}
                     <AddButton
+                      className="addbutton"
                       id={item._id}
                       value={item}
                       addToCart={this.props.addToCart}
                     />
                   </td>
-                  <td>{item.item}</td>
-                  <td>{item.type}</td>
+                  <td>
+                    <ModalList
+                      addItem={this.props.addToCart}
+                      key={item._id}
+                      item={item}
+                    />
+                  </td>
+                  <td>{item.subCategory}</td>
                   <td>${item.price}</td>
                 </tr>
               );

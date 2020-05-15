@@ -31,11 +31,7 @@
     "mdbreact": "^4.22.1",
     "mdreact": "^0.1.5",
     "mongoose": "^5.8.1",
-    "passport": "^0.4.1",
-    "passport-facebook": "^3.0.0",
     "react": "^16.11.0",
-    "react-facebook-login": "^4.1.1",
-    "react-materialize": "^3.4.1",
     "react-router-dom": "^5.1.2",
     "react-youtube": "^7.9.0"
   }

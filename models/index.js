@@ -1,5 +1,6 @@
 module.exports = {
   FoodPairing: require("./foodPairing"),
   Menu: require("./menu"),
-  DrinkPairing: require("./drinkPairing")
+  DrinkPairing: require("./drinkPairing"),
+  User: require("./user-model"),
 };

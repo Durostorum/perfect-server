@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "../../Pages/DrinkFoodPage/drinkfood.css";
 import {
   MDBBtn,
@@ -10,28 +9,23 @@ import {
   MDBCardText,
   MDBCol,
 } from "mdbreact";
-import foodpage from "../FoodPage";
-import { Redirect } from "react-router-dom";
 
 class DrinkFood extends Component {
   redirect = () => {
     //Better React Solution
     window.location.replace("foodPage");
-    // console.log("Hello World!");
-    //   return <Redirect to="/foodpage" />;
   };
 
   render() {
     return (
       <div>
-        {this.props.session && <h6>Welcome back, {this.props.session.name}</h6>}
         <div>
           <h1 className="h1">What are you in the mood for?</h1>
         </div>
         <div className="row col-12">
-          <div className="card1 offset-3">
+          <div className="drink-food-card offset-3">
             <MDBCol className="">
-              <MDBCard style={{ width: "26rem" }}>
+              <MDBCard>
                 <MDBCardImage
                   className="img-fluid"
                   src="https://img4.goodfon.com/wallpaper/nbig/5/ae/iaponskaia-kukhnia-moreprodukty-assorti.jpg"
@@ -58,9 +52,9 @@ class DrinkFood extends Component {
             </MDBCol>
           </div>
 
-          <div className="card2 col-">
+          <div className="drink-food-card col-">
             <MDBCol>
-              <MDBCard style={{ width: "26rem" }}>
+              <MDBCard>
                 <MDBCardImage
                   className="img-fluid"
                   src="https://i.imgur.com/frgLB7o.jpg?1"

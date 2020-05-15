@@ -1,40 +1,31 @@
 import React from "react";
 import Youtube from "react-youtube";
 import AddButton from "../Carlos/addButton";
+import { Col, Row, Container } from "../Grid";
+
 import {
   MDBBtn,
   MDBCard,
   MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
   MDBCardText,
   MDBCol,
   MDBIcon,
 } from "mdbreact";
 import "../Carousel/Carousel.css";
-import Detail from "../../Pages/MainPage/index";
 
 function Corousel(props) {
-  document.onkeydown = checkKey;
-  function checkKey(e) {
-    e = e || window.event;
-
-    if (e.keyCode == "32") {
-      props.next();
-    } else if (e.keyCode == "37") {
-      props.onPrevious();
-    } else if (e.keyCode == "39") {
-      props.onNext();
-    }
-  }
   return (
     <div>
       <MDBCol>
-        <MDBCard className="cardone" style={{ width: "50rem" }}>
+        <Row>
+          <Col size="md-6">5050550</Col>
+        </Row>
+
+        <MDBCard className="cardone">
           <MDBCardBody className="cardbody">
             <MDBCardText>
               <div className="bd-example">
-                <div className="carousel-inner">
+                <div>
                   {props.result.map((item, index) => (
                     <div
                       key={`slide-${index}`}
@@ -42,39 +33,47 @@ function Corousel(props) {
                         index === props.currentSlide && "active"
                       }`}
                     >
-                      {console.log("It" + item.item)}
-
                       <Youtube
+                        className="youtube"
                         videoId={item.videoId}
-                        className="d-block w-100"
                         alt="..."
                       />
-                      <div className="row offset-4">
-                        <MDBIcon
-                          className="addicon"
-                          onClick={props.onPrevious}
-                          icon="angle-left"
-                        />
-                        <h5 className="item-name">{item.item}</h5>
 
-                        <MDBIcon
-                          className="addicon"
-                          onClick={(event) => {
-                            props.onNext();
-                          }}
-                          icon="angle-right"
-                        />
-                        <AddButton
-                          className="addicon"
-                          id={item._id}
-                          value={item}
-                          addToCart={props.addToCart}
-                        />
+                      <div className="container carosel-container">
+                        <div class="row">
+                          <div className="col col-md-2">
+                            <MDBIcon
+                              className="arrow-icons"
+                              onClick={props.onPrevious}
+                              icon="angle-left"
+                            />
+                          </div>
+                          <div className="col col-md-2">
+                            <h5 className="item-name">{item.item}</h5>
+                          </div>
+                          <div className="col col-md-2">
+                            <MDBIcon
+                              className="arrow-icons"
+                              onClick={(event) => {
+                                props.onNext();
+                              }}
+                              icon="angle-right"
+                            />
+                          </div>
+                          <div className="col col-md-2">
+                            <AddButton
+                              classname="addbtn"
+                              id={item._id}
+                              value={item}
+                              addToCart={props.addToCart}
+                            />
+                          </div>
+                        </div>
                       </div>
-                      <p className="p">{item.description}</p>
+                      <span className="p">{item.description}</span>
 
                       <MDBBtn
-                        className="ctg-btn"
+                        className="peach-gradient"
                         onClick={(event) => {
                           props.next();
                         }}
@@ -82,6 +81,7 @@ function Corousel(props) {
                         Next Category
                       </MDBBtn>
                     </div>
+                    // ArrowButtons(item)
                   ))}
                 </div>
               </div>

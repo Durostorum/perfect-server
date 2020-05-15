@@ -1,20 +1,17 @@
 import axios from "axios";
 
 export default {
-  login: function (email, password) {
-    return new Promise((resolve, reject) => {
-      resolve({ id: 1, token: "user", name: "Stephen Fernandez" });
-    });
-  },
-
   getFoodPair: function () {
     return axios.get("/api/foodpage");
   },
 
+  googleAuth: function () {
+    return axios.get("/api/auth/google/redirect");
+  },
   getDetails: function (id) {
     return axios.get("/api/foodpage/" + id);
   },
-  fullMenu: function (id) {
-    return axios.get("/api/foodpage/?id");
+  fullMenu: function () {
+    return axios.get("/api/foodpage/:id");
   },
 };

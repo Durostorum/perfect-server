@@ -2,14 +2,17 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import Carousel from "../../Components/Carousel";
 import { Col, Row, Container } from "../../Components/Grid";
+import ShoppingCart from "../../Components/Carlos";
 import List from "../../Components/Carlos/list";
 import Cart from "../../Components/Carlos/cart";
 import "../MainPage/MainPage.css";
-import Location from "../../Components/Location";
+import DisplayButton from "../../Components/displayMenuButton";
 
 import {
+  MDBBtn,
   MDBCard,
   MDBCardBody,
+  MDBCardImage,
   MDBCardTitle,
   MDBCardText,
   MDBCol,
@@ -31,8 +34,6 @@ class Detail extends Component {
     collapseID: "",
     name: "",
     details: [],
-    address: "7535 N Kendall Drive Unit 2510, Miami FL",
-    location: false,
   };
 
   outside = (id) => {
@@ -94,13 +95,11 @@ class Detail extends Component {
         break;
     }
   };
-  displayLocation = () => {
-    const { location } = this.state;
-    this.setState({ location: !location });
-  };
-  displayMenu = () => {
-    this.setState({ details: [] });
-  };
+
+  // displayMenu = () => {
+  //   let { current } = this.state;
+  //   this.setState({ details: [] });
+  // };
 
   nextStep = () => {
     let { current, skipped, selectedSteps } = this.state;
@@ -108,7 +107,6 @@ class Detail extends Component {
       result: [],
       details: [],
       current: current + 1,
-      location: false,
       partMenu: false,
     });
 
@@ -196,7 +194,7 @@ class Detail extends Component {
         break;
     }
   };
-
+  select = () => {};
   async componentDidMount() {
     let newState = this.props.location.state;
     console.log("Lets see", newState);
@@ -241,25 +239,26 @@ class Detail extends Component {
       this.setState({ partMenu });
     }
   };
-  showCart = () => {
-    const { showCart } = this.state;
-    this.setState({ showCart: !showCart });
-  };
+
   render() {
     return (
       <div className="body">
         <Container fluid>
-          <div>
+          <div className="box2">
             <Row>
               <Col size="md-2">
-                <MDBCard className="menucard">
-                  <MDBCardBody id="features-card">
+                <MDBCard className="menucard" style={{ width: "21rem" }}>
+                  <MDBCardBody>
                     <MDBCardTitle className="title">Features</MDBCardTitle>
 
                     <MDBCardText>
-                      <ul className="features-card-text">
-                        <a className="icon" onClick={this.display}>
-                          <MDBIcon icon="book-open" />
+                      <ul>
+                        <a
+                          // displayMenu={this.displayMenu}
+                          onClick={this.display}
+                        >
+                          <MDBIcon icon="bars" />
+                          More {this.state.name}
                         </a>
                         {this.state.partMenu && (
                           <List
@@ -268,50 +267,37 @@ class Detail extends Component {
                             next={this.nextStep}
                           />
                         )}
-                        <a className="icon" onClick={this.displayLocation}>
-                          <MDBIcon icon="globe-americas" />
-                        </a>
-                        {this.state.location && (
-                          <Location location={this.state.address} />
-                        )}
 
-                        {/* <a>
+                        <a>
                           <MDBIcon icon="address-book" /> Reservations
                         </a>
                         <a>
                           {" "}
                           <MDBIcon icon="user-check" /> Reviews
-                        </a> */}
-                        <a className="icon">
-                          <MDBIcon icon="cocktail" />
                         </a>
-
-                        <a className="icon">
+                        <a>
+                          <MDBIcon icon="cocktail" /> Happy Hour Menu
+                        </a>
+                        <a>
+                          <MDBIcon icon="globe-americas" /> Location
+                        </a>
+                        <a>
                           {" "}
-                          <MDBIcon icon="phone" />
+                          <MDBIcon icon="phone" /> Contact
                         </a>
-                        <a className="icon">
+                        <a>
                           {" "}
-                          <MDBIcon far icon="images" />
+                          <MDBIcon far icon="images" /> Gallery{" "}
                         </a>
-                        <a className="icon" onClick={this.showCart}>
-                          <MDBIcon icon="shopping-cart" />
-                        </a>
-                        {this.state.showCart && (
-                          <Cart
-                            items={this.state.cart}
-                            removeFromCart={this.removeFromCart}
-                          />
-                        )}
                       </ul>
                     </MDBCardText>
                   </MDBCardBody>
                 </MDBCard>
               </Col>
-
-              {/* Top features for: {this.state.name} */}
-              <div>
-                <Col size="md-10">
+              <h1 className="caro-row">
+                Top features for: {this.state.name}
+                {console.log(this.state.name, "NAME TEST")}
+                <Col size="sm-5">
                   <Carousel
                     next={this.nextStep}
                     addToCart={this.addToCart}
@@ -335,18 +321,22 @@ class Detail extends Component {
                     }
                   ></Carousel>
                 </Col>
-              </div>
-
-              {/* <Col size="3">
+              </h1>
+              <Col size="3">
                 <MDBCol className="">
                   <MDBCard className="cartcard">
                     <MDBCardBody>
-                      <MDBCardTitle className="cart-title">Cart</MDBCardTitle>
-                      <MDBCardText></MDBCardText>
+                      <MDBCardTitle className="title2">Cart</MDBCardTitle>
+                      <MDBCardText>
+                        <Cart
+                          items={this.state.cart}
+                          removeFromCart={this.removeFromCart}
+                        />
+                      </MDBCardText>
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>
-              </Col> */}
+              </Col>
             </Row>
           </div>
         </Container>

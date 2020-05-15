@@ -1,0 +1,11 @@
+#location {
+  font-family: "Libre Baskerville", serif;
+}
+#location:link {
+  text-decoration: underline;
+}
+#location:hover {
+  color: #fc6262;
+  text-decoration: none;
+  font-weight: normal;
+}
