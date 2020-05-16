@@ -5,8 +5,8 @@ export default {
     return axios.get("/api/foodpage");
   },
 
-  googleAuth: function () {
-    return axios.get("/api/auth/google/redirect");
+  facebookAuth: function () {
+    return axios.get("/auth/facebook/cb");
   },
   getDetails: function (id) {
     return axios.get("/api/foodpage/" + id);

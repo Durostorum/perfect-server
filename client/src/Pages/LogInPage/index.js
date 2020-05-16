@@ -11,8 +11,12 @@ import {
   MDBInput,
   MDBIcon,
 } from "mdbreact";
+import API from "../../utils/API";
 
 class LoginForm extends Component {
+  handleFacebook = () => {
+    API.facebookAuth().then(() => console.log("WE TRIING"));
+  };
   render() {
     return (
       <div className="loginbody">
@@ -28,7 +32,10 @@ class LoginForm extends Component {
                     </h3>
                   </MDBRow>
                   <MDBRow className="mt-2 mb-3 d-flex justify-content-center">
-                    <a href="/" className="fa-lg p-2 m-2 fb-ic">
+                    <a
+                      href="http://localhost:3001/auth/facebook"
+                      className="fa-lg p-2 m-2 fb-ic"
+                    >
                       {/* <FacebookAuth /> */}
                       <MDBIcon
                         fab
