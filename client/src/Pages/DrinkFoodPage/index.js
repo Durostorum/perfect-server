@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../../Pages/DrinkFoodPage/drinkfood.css";
+import API from "../../utils/API";
 import {
   MDBBtn,
   MDBCard,
@@ -11,16 +12,31 @@ import {
 } from "mdbreact";
 
 class DrinkFood extends Component {
+  constructor() {
+    super();
+  }
+  state = {
+    userName: "",
+  };
+  componentDidMount = () => {
+    API.getUser()
+      .then((res) => {
+        this.setState({ userName: res.data.user.name });
+      })
+      .catch((err) => console.log(err));
+  };
   redirect = () => {
     //Better React Solution
-    window.location.replace("foodPage");
+    window.location.href = "foodPage";
   };
 
   render() {
     return (
       <div>
         <div>
-          <h1 className="h1">What are you in the mood for?</h1>
+          <h1 className="h1">
+            What are you in the mood for, {this.state.userName}?
+          </h1>
         </div>
         <div className="row col-12">
           <div className="drink-food-card offset-3">

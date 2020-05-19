@@ -5,6 +5,12 @@ const passport = require("passport");
 /* Session middleware */
 const { isLoggedIn, LoggedIn } = require("../../config/forceinout");
 
+router.get("/logout", LoggedIn, (req, res) => {
+  req.logout();
+  req.flash("success_alert", "We will miss you");
+  res.redirect("/login");
+});
+
 /* facebook login */
 router.get(
   "/auth/facebook",

@@ -42,7 +42,6 @@ module.exports = (passport) => {
         profileFields: ["emails", "name", "displayName"],
       },
       function (accessToken, refreshToken, profile, done) {
-        console.log(profile.provider);
         const {
           _json: { email, name },
         } = profile;
@@ -62,14 +61,14 @@ module.exports = (passport) => {
           const newUser = User({
             name: userData.name,
             email: userData.email,
-            password: userData.password,
             provider: userData.provider,
           });
 
           newUser
             .save()
             .then((user) => {
-              res.redirect("/dashboard");
+              console.log(user);
+              res.redirect("/drinkfood");
             })
             .catch((err) => console.log(err));
           return done(null, user);
