@@ -5,7 +5,7 @@ export default {
     return axios.get("/api/foodpage");
   },
   placeOrder: function (id, order) {
-    return axios.put("/api/order/" + id, { order });
+    return axios.put("/api/order/" + id, order);
   },
   getUser: function () {
     return axios.get("/api/menu/drinkfood");

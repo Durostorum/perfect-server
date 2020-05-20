@@ -52,13 +52,13 @@ module.exports = (passport) => {
           provider: profile.provider,
         };
 
-        User.findOne({ email: email }).then((user) => {
+        UserModel.findOne({ email }).then((user) => {
           if (user) {
             return done(null, user);
           }
 
           // Hash user password
-          const newUser = User({
+          const newUser = UserModel({
             name: userData.name,
             email: userData.email,
             provider: userData.provider,
@@ -68,7 +68,7 @@ module.exports = (passport) => {
             .save()
             .then((user) => {
               console.log(user);
-              res.redirect("/drinkfood");
+              // res.redirect("/drinkfood");
             })
             .catch((err) => console.log(err));
           return done(null, user);

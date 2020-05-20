@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const db = require("../../models/");
-const { isLoggedIn } = require("../../config/forceinout");
+const { isLoggedIn, LoggedIn } = require("../../config/forceinout");
 
 // matches /api/foodPage
-router.get("/", isLoggedIn, (req, res) => {
+router.get("/", (req, res) => {
   db.FoodPairing.find({})
     .then((dbModel) => res.json(dbModel))
     .catch((err) => res.status(422).json(err));
