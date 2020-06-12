@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "../../Pages/DrinkFoodPage/drinkfood.css";
+import API from "../../utils/API";
 import {
   MDBBtn,
   MDBCard,
@@ -11,16 +13,33 @@ import {
 } from "mdbreact";
 
 class DrinkFood extends Component {
-  redirect = () => {
-    //Better React Solution
-    window.location.replace("foodPage");
+  constructor() {
+    super();
+  }
+  state = {
+    userName: "",
+  };
+
+  componentDidMount = () => {
+    API.getUser()
+      .then((res) => {
+        if (res.data.user === undefined) {
+          window.location.href = "login";
+        } else {
+          console.log("Res data exists", res.data);
+          this.setState({ userName: res.data.user });
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   render() {
     return (
       <div>
         <div>
-          <h1 className="h1">What are you in the mood for?</h1>
+          <h1 className="h1">
+            What are you in the mood for, {this.state.userName}?
+          </h1>
         </div>
         <div className="row col-12">
           <div className="drink-food-card offset-3">
@@ -41,12 +60,11 @@ class DrinkFood extends Component {
                     <br />
                     <br />
                   </MDBCardText>
-                  <MDBBtn
-                    onClick={this.redirect}
-                    className="header pt-3 peach-gradient"
-                  >
-                    Select{" "}
-                  </MDBBtn>
+                  <Link to="/foodpage">
+                    <MDBBtn className="header pt-3 peach-gradient">
+                      Select{" "}
+                    </MDBBtn>
+                  </Link>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>

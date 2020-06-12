@@ -47,6 +47,7 @@ class Cart extends Component {
           </tbody>
         </table>
         <p>Total: ${this.total()}</p>
+        <button onClick={this.props.onClick}>Order</button>
       </div>
     );
   }

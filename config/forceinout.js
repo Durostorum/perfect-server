@@ -3,14 +3,12 @@ module.exports = {
     if (req.isAuthenticated()) {
       return next();
     }
-
-    req.flash("error_alert", "You must login to view this page");
-    res.redirect("/uses/login");
+    res.redirect("/");
   },
   LoggedIn: (req, res, next) => {
     if (!req.isAuthenticated()) {
       return next();
     }
-    res.redirect("/dashboard");
+    res.redirect("/drinkfood");
   },
 };

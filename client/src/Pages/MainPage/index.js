@@ -33,18 +33,22 @@ class Detail extends Component {
     details: [],
     address: "7535 N Kendall Drive Unit 2510, Miami FL",
     location: false,
+    userId: "",
+  };
+  handlePurchase = () => {
+    API.placeOrder(this.state.userId, { order: this.state.cart });
   };
 
   outside = (id) => {
     API.getDetails(id)
       .then((res) => {
         this.setState({
-          result: [...this.state.result, res.data],
-          details: [...this.state.details, res.data],
+          result: [...this.state.result, res.data[0]],
+          details: [...this.state.details, res.data[0]],
+          userId: res.data[1],
         });
       })
       .catch((err) => console.log(err));
-    console.log(this.state.result);
   };
 
   switchTwo = (step) => {
@@ -299,6 +303,7 @@ class Detail extends Component {
                         </a>
                         {this.state.showCart && (
                           <Cart
+                            onClick={this.handlePurchase}
                             items={this.state.cart}
                             removeFromCart={this.removeFromCart}
                           />

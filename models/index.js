@@ -3,4 +3,5 @@ module.exports = {
   Menu: require("./menu"),
   DrinkPairing: require("./drinkPairing"),
   User: require("./user-model"),
+  Orders: require("./orders"),
 };

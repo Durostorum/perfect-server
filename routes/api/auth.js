@@ -5,12 +5,16 @@ const passport = require("passport");
 /* Session middleware */
 const { isLoggedIn, LoggedIn } = require("../../config/forceinout");
 
+// router.get("/logout", isLoggedIn, (req, res) => {
+//   req.logout();
+//   res.redirect("/login");
+// });
+
 /* facebook login */
 router.get(
   "/auth/facebook",
   passport.authenticate("facebook"),
-  passport.authorize("facebook", { scope: ["email"] }),
-  LoggedIn
+  passport.authorize("facebook", { scope: ["email"] })
 );
 
 router.get(
@@ -18,8 +22,7 @@ router.get(
   passport.authenticate("facebook", {
     successRedirect: "http://localhost:3005/drinkfood",
     failureRedirect: "http://localhost:3005/login",
-  }),
-  LoggedIn
+  })
 );
 
 module.exports = router;

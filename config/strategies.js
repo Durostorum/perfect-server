@@ -42,34 +42,34 @@ module.exports = (passport) => {
         profileFields: ["emails", "name", "displayName"],
       },
       function (accessToken, refreshToken, profile, done) {
-        console.log(profile.provider);
         const {
           _json: { email, name },
         } = profile;
-
         const userData = {
+          accessToken,
           email,
           name,
           provider: profile.provider,
         };
 
-        User.findOne({ email: email }).then((user) => {
+        UserModel.findOne({ email }).then((user) => {
           if (user) {
             return done(null, user);
           }
 
           // Hash user password
-          const newUser = User({
+          const newUser = UserModel({
             name: userData.name,
             email: userData.email,
-            password: userData.password,
             provider: userData.provider,
+            accessToken: userData.accessToken,
           });
 
           newUser
             .save()
             .then((user) => {
-              res.redirect("/dashboard");
+              console.log(user);
+              // res.redirect("/drinkfood");
             })
             .catch((err) => console.log(err));
           return done(null, user);

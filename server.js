@@ -3,12 +3,14 @@ const dotenv = require("dotenv");
 const passport = require("passport");
 const session = require("express-session");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const https = require("https");
 const routes = require("./routes");
+var cors = require("cors");
 const PORT = process.env.PORT || 3001;
 
 const app = express();
-
+app.use(cors());
 // Passport initialize
 require("./config/strategies")(passport);
 
@@ -20,6 +22,7 @@ mongoose.connect(MONGODB_URI);
 
 // Express Body parser
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser());
 
 // Express session
 app.use(

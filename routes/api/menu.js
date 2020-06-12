@@ -1,17 +1,13 @@
 const router = require("express").Router();
-const vsController = require("../../controllers/vsController");
-const foodController = require("../../controllers/foodController");
 
+const { isLoggedIn } = require("../../config/forceinout");
 // Matches with "/api/menu"
-router.route("/menu").get(vsController.findAll).post(vsController.create);
-
-// Matches with "/api/menu/:id"
-router
-  .route("/foodPage")
-  .get(foodController.findAll)
-  .put(foodController.update)
-  .delete(foodController.remove);
-
-router.route("/:subcategories").get(vsController.findAll);
+router.get("/drinkfood", (req, res) => {
+  console.log("this comes from server", req.user);
+  if (!req.user) {
+    res.redirect("/");
+  }
+  res.send({ user: req.user.name, token: req.user.accessToken });
+});
 
 module.exports = router;
