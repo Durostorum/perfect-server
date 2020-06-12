@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "../../Pages/DrinkFoodPage/drinkfood.css";
 import API from "../../utils/API";
 import {
@@ -18,16 +19,18 @@ class DrinkFood extends Component {
   state = {
     userName: "",
   };
+
   componentDidMount = () => {
     API.getUser()
       .then((res) => {
-        this.setState({ userName: res.data.user.name });
+        if (res.data.user === undefined) {
+          window.location.href = "login";
+        } else {
+          console.log("Res data exists", res.data);
+          this.setState({ userName: res.data.user });
+        }
       })
       .catch((err) => console.log(err));
-  };
-  redirect = () => {
-    //Better React Solution
-    window.location.href = "foodPage";
   };
 
   render() {
@@ -57,12 +60,11 @@ class DrinkFood extends Component {
                     <br />
                     <br />
                   </MDBCardText>
-                  <MDBBtn
-                    onClick={this.redirect}
-                    className="header pt-3 peach-gradient"
-                  >
-                    Select{" "}
-                  </MDBBtn>
+                  <Link to="/foodpage">
+                    <MDBBtn className="header pt-3 peach-gradient">
+                      Select{" "}
+                    </MDBBtn>
+                  </Link>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>

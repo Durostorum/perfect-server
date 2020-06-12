@@ -19,6 +19,7 @@ class foodpage extends Component {
   state = {
     foodPairings: [],
     name: "",
+    userName: "",
   };
 
   foodClicked = (item) => {

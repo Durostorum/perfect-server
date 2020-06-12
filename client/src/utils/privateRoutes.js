@@ -1,19 +1,24 @@
-import React from 'react';  
-import { Redirect, Route } from 'react-router-dom';
+import React from "react";
+import { Redirect, Route } from "react-router-dom";
+import API from "../utils/API";
 
-// Utils
-import auth from '../../utils/auth';
+let userData = API.getUser().then((res) => (userData = res.data));
 
-const PrivateRoute = ({ component: Component, ...rest }) => (  
-  <Route {...rest} render={props => (
-    auth.getToken() !== null ? (
-      <Component {...props} />
-    ) : (
-      <Redirect to={{
-        pathname: 'auth/login',
-        state: { from: props.location }
-        }}
-      />
-);
-
-export default PrivateRoute; 
+export const ProtectedRoute = ({
+  component: Component,
+  handleChildFunc,
+  ...rest
+}) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        userData.token !== undefined ? (
+          <Component {...props} userData={userData} />
+        ) : (
+          <Redirect to="/login" />
+        )
+      }
+    />
+  );
+};

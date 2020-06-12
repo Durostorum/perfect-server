@@ -14,9 +14,6 @@ import {
 import API from "../../utils/API";
 
 class LoginForm extends Component {
-  handleFacebook = () => {
-    API.facebookAuth().then(() => console.log("WE TRIING"));
-  };
   render() {
     return (
       <div className="loginbody">

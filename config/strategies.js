@@ -45,8 +45,8 @@ module.exports = (passport) => {
         const {
           _json: { email, name },
         } = profile;
-
         const userData = {
+          accessToken,
           email,
           name,
           provider: profile.provider,
@@ -62,6 +62,7 @@ module.exports = (passport) => {
             name: userData.name,
             email: userData.email,
             provider: userData.provider,
+            accessToken: userData.accessToken,
           });
 
           newUser
