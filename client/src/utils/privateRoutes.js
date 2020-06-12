@@ -14,7 +14,7 @@ export const ProtectedRoute = ({
       {...rest}
       render={(props) =>
         userData.token !== undefined ? (
-          <Component {...props} userData={userData} />
+          <Component {...props} />
         ) : (
           <Redirect to="/login" />
         )
