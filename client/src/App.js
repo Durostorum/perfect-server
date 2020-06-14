@@ -19,17 +19,43 @@ import MainPage from "./Pages/MainPage";
 import Footer from "./Components/Footer";
 import { ProtectedRoute } from "./utils/privateRoutes";
 class App extends Component {
+  state = {
+    isAuthed: false,
+  };
+  handleClick = () => {
+    this.setState({ isAuthed: true });
+    console.log("APPPppp JS", this.state.isAuthed);
+  };
+  componentDidMount = () => {
+    API.getUser().then((res) => {
+      if (res.headers.access_token) {
+        this.setState({ isAuthed: true });
+      }
+    });
+  };
   render() {
     return (
       <Router>
         <div>
-          <Navbar />
+          <Navbar isAuthed={this.state.isAuthed} />
           <Switch>
             <Route exact path="/" component={HomePage} />
-
-            <Route exact path="/login" component={Login} />
+            <Route
+              exact
+              path="/login"
+              render={() => (
+                <Login
+                  isAuthed={this.state.isAuthed}
+                  handleClick={this.handleClick}
+                />
+              )}
+            />
             <ProtectedRoute exact path="/foodpage/:id" component={MainPage} />
-            <Route exact path="/drinkfood" component={DrinkFoodPage} />
+            <Route
+              exact
+              path="/drinkfood"
+              render={() => <DrinkFoodPage isAuthed={this.state.isAuthed} />}
+            />
             <ProtectedRoute exact path="/foodpage" component={foodpage} />
             <Route exact path="/drinkpage" component={drinkpage} />
           </Switch>

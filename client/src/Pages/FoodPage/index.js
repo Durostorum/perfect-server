@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import "../FoodPage/FoodPage.css";
+import Navbar from "../../Components/Navbar";
 import {
   MDBBtn,
   MDBCard,
@@ -44,6 +45,7 @@ class foodpage extends Component {
   render() {
     return (
       <div>
+        <Navbar />
         <div className="foodcategory">
           <h2>Choose a food category:</h2>
         </div>
