@@ -7,7 +7,9 @@ router.get("/drinkfood", (req, res) => {
   if (!req.user) {
     res.redirect("/");
   }
-  res.send({ user: req.user.name, token: req.user.accessToken });
+
+  res.append("access_token", req.user.accessToken);
+  res.send({ user: req.user.name });
 });
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import NavBar from "../../Components/Navbar";
 import "../../Pages/DrinkFoodPage/drinkfood.css";
 import API from "../../utils/API";
 import {
@@ -35,42 +36,44 @@ class DrinkFood extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <div>
-          <h1 className="h1">
-            What are you in the mood for, {this.state.userName}?
-          </h1>
-        </div>
-        <div className="row col-12">
-          <div className="drink-food-card offset-3">
-            <MDBCol className="">
-              <MDBCard>
-                <MDBCardImage
-                  className="img-fluid"
-                  src="https://img4.goodfon.com/wallpaper/nbig/5/ae/iaponskaia-kukhnia-moreprodukty-assorti.jpg"
-                  height=""
-                  width=""
-                  waves
-                />
-
-                <MDBCardBody>
-                  <MDBCardTitle>Food</MDBCardTitle>
-                  <MDBCardText>
-                    Select this to see options of delicious foods. Nom Nom Nom!
-                    <br />
-                    <br />
-                  </MDBCardText>
-                  <Link to="/foodpage">
-                    <MDBBtn className="header pt-3 peach-gradient">
-                      Select{" "}
-                    </MDBBtn>
-                  </Link>
-                </MDBCardBody>
-              </MDBCard>
-            </MDBCol>
+          <div>
+            <h1 className="h1">
+              What are you in the mood for, {this.state.userName}?
+            </h1>
           </div>
+          <div className="row col-12">
+            <div className="drink-food-card offset-3 m-auto">
+              <MDBCol className="">
+                <MDBCard>
+                  <MDBCardImage
+                    className="img-fluid"
+                    src="https://img4.goodfon.com/wallpaper/nbig/5/ae/iaponskaia-kukhnia-moreprodukty-assorti.jpg"
+                    height=""
+                    width=""
+                    waves
+                  />
 
-          <div className="drink-food-card col-">
+                  <MDBCardBody>
+                    <MDBCardTitle>Food</MDBCardTitle>
+                    <MDBCardText>
+                      Select this to see options of delicious foods. Nom Nom
+                      Nom!
+                      <br />
+                      <br />
+                    </MDBCardText>
+                    <Link to="/foodpage">
+                      <MDBBtn className="header pt-3 peach-gradient">
+                        Select{" "}
+                      </MDBBtn>
+                    </Link>
+                  </MDBCardBody>
+                </MDBCard>
+              </MDBCol>
+            </div>
+
+            {/* <div className="drink-food-card col-">
             <MDBCol>
               <MDBCard>
                 <MDBCardImage
@@ -98,9 +101,10 @@ class DrinkFood extends Component {
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
+          </div> */}
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }

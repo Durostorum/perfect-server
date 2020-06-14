@@ -1,28 +1,54 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
+import { Link } from "react-router-dom";
 import "./navbar.css";
 
 class Navbar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {
+      userName: "",
+      user: "",
+      isAuthed: this.props.isAuthed,
+    };
   }
-  state = {
-    userName: "",
+  componentWillUpdate = (prevProps) => {
+    if (prevProps.isAuthed !== this.props.isAuthed) {
+      this.setState({ value: this.props.isAuthed });
+    }
+    console.log("FRom component did update", this.state.isAuthed);
   };
-  // componentDidMount = () => {
-  //   API.getUser()
-  //     .then((res) => {
-  //       if (res.data.user === undefined) {
-  //
-  //       } else {
-  //
-  //       }
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
+
   render() {
+    console.log("NAVBAAAAR nav component", this.props.isAuthed);
+    let isLoggedIn = this.props.isAuthed;
+    let toLogOut = (
+      <li key={this.state.isAuthed} className="nav-item">
+        <Link className="nav-link active" to="/">
+          Logout <span className="sr-only"></span>
+        </Link>
+      </li>
+    );
+    const toLogIn = (
+      <>
+        <li className="nav-item ">
+          <Link className="nav-link active" to="/register">
+            Register
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link active" to="/login">
+            Login <span className="sr-only"></span>
+          </Link>
+        </li>
+      </>
+    );
+
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav
+        key={this.props.isAuthed}
+        className="navbar navbar-expand-lg navbar-light bg-light"
+      >
         <a className="navbar-brand" href="/">
           Perfect Server
         </a>
@@ -44,20 +70,11 @@ class Navbar extends Component {
           <div className="space-filler"></div>
           <ul className="navbar-nav">
             <li className="nav-item ">
-              <a className="nav-link active" href="/">
+              <Link className="nav-link active" to="/">
                 Home <span className="sr-only">(current)</span>
-              </a>
+              </Link>
             </li>
-            <li className="nav-item ">
-              <a className="nav-link active" href="register">
-                About us
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link active" href="/login">
-                Login <span className="sr-only"></span>
-              </a>
-            </li>
+            {isLoggedIn ? toLogOut : toLogIn}
           </ul>
         </div>
       </nav>

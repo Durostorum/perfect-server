@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Navbar from "../../Components/Navbar";
 import API from "../../utils/API";
 import Carousel from "../../Components/Carousel";
 import { Col, Row, Container } from "../../Components/Grid";
@@ -251,98 +252,101 @@ class Detail extends Component {
   };
   render() {
     return (
-      <div className="body">
-        <Container fluid>
-          <div>
-            <Row>
-              <Col size="md-2">
-                <MDBCard className="menucard">
-                  <MDBCardBody id="features-card">
-                    <MDBCardTitle className="title">Features</MDBCardTitle>
+      <>
+        <Navbar />
+        <div className="body">
+          <Container fluid>
+            <div>
+              <Row>
+                <Col size="md-2">
+                  <MDBCard className="menucard">
+                    <MDBCardBody id="features-card">
+                      <MDBCardTitle className="title">Features</MDBCardTitle>
 
-                    <MDBCardText>
-                      <ul className="features-card-text">
-                        <a className="icon" onClick={this.display}>
-                          <MDBIcon icon="book-open" />
-                        </a>
-                        {this.state.partMenu && (
-                          <List
-                            details={this.state.details}
-                            addToCart={this.addToCart}
-                            next={this.nextStep}
-                          />
-                        )}
-                        <a className="icon" onClick={this.displayLocation}>
-                          <MDBIcon icon="globe-americas" />
-                        </a>
-                        {this.state.location && (
-                          <Location location={this.state.address} />
-                        )}
+                      <MDBCardText>
+                        <ul className="features-card-text">
+                          <a className="icon" onClick={this.display}>
+                            <MDBIcon icon="book-open" />
+                          </a>
+                          {this.state.partMenu && (
+                            <List
+                              details={this.state.details}
+                              addToCart={this.addToCart}
+                              next={this.nextStep}
+                            />
+                          )}
+                          <a className="icon" onClick={this.displayLocation}>
+                            <MDBIcon icon="globe-americas" />
+                          </a>
+                          {this.state.location && (
+                            <Location location={this.state.address} />
+                          )}
 
-                        {/* <a>
+                          {/* <a>
                           <MDBIcon icon="address-book" /> Reservations
                         </a>
                         <a>
                           {" "}
                           <MDBIcon icon="user-check" /> Reviews
                         </a> */}
-                        <a className="icon">
-                          <MDBIcon icon="cocktail" />
-                        </a>
+                          <a className="icon">
+                            <MDBIcon icon="cocktail" />
+                          </a>
 
-                        <a className="icon">
-                          {" "}
-                          <MDBIcon icon="phone" />
-                        </a>
-                        <a className="icon">
-                          {" "}
-                          <MDBIcon far icon="images" />
-                        </a>
-                        <a className="icon" onClick={this.showCart}>
-                          <MDBIcon icon="shopping-cart" />
-                        </a>
-                        {this.state.showCart && (
-                          <Cart
-                            onClick={this.handlePurchase}
-                            items={this.state.cart}
-                            removeFromCart={this.removeFromCart}
-                          />
-                        )}
-                      </ul>
-                    </MDBCardText>
-                  </MDBCardBody>
-                </MDBCard>
-              </Col>
-
-              {/* Top features for: {this.state.name} */}
-              <div>
-                <Col size="md-10">
-                  <Carousel
-                    next={this.nextStep}
-                    addToCart={this.addToCart}
-                    result={this.state.result}
-                    currentSlide={this.state.currentSlide}
-                    onNext={() =>
-                      this.setState({
-                        currentSlide:
-                          this.state.currentSlide < this.state.result.length - 1
-                            ? this.state.currentSlide + 1
-                            : 0,
-                      })
-                    }
-                    onPrevious={() =>
-                      this.setState({
-                        currentSlide:
-                          this.state.currentSlide > 0
-                            ? this.state.currentSlide - 1
-                            : this.state.result.length - 1,
-                      })
-                    }
-                  ></Carousel>
+                          <a className="icon">
+                            {" "}
+                            <MDBIcon icon="phone" />
+                          </a>
+                          <a className="icon">
+                            {" "}
+                            <MDBIcon far icon="images" />
+                          </a>
+                          <a className="icon" onClick={this.showCart}>
+                            <MDBIcon icon="shopping-cart" />
+                          </a>
+                          {this.state.showCart && (
+                            <Cart
+                              onClick={this.handlePurchase}
+                              items={this.state.cart}
+                              removeFromCart={this.removeFromCart}
+                            />
+                          )}
+                        </ul>
+                      </MDBCardText>
+                    </MDBCardBody>
+                  </MDBCard>
                 </Col>
-              </div>
 
-              {/* <Col size="3">
+                {/* Top features for: {this.state.name} */}
+                <div>
+                  <Col size="md-10">
+                    <Carousel
+                      next={this.nextStep}
+                      addToCart={this.addToCart}
+                      result={this.state.result}
+                      currentSlide={this.state.currentSlide}
+                      onNext={() =>
+                        this.setState({
+                          currentSlide:
+                            this.state.currentSlide <
+                            this.state.result.length - 1
+                              ? this.state.currentSlide + 1
+                              : 0,
+                        })
+                      }
+                      onPrevious={() =>
+                        this.setState({
+                          currentSlide:
+                            this.state.currentSlide > 0
+                              ? this.state.currentSlide - 1
+                              : this.state.result.length - 1,
+                        })
+                      }
+                    ></Carousel>
+                  </Col>
+                </div>
+
+                {/* <Col size="3">
                 <MDBCol className="">
                   <MDBCard className="cartcard">
                     <MDBCardBody>
@@ -352,10 +356,11 @@ class Detail extends Component {
                   </MDBCard>
                 </MDBCol>
               </Col> */}
-            </Row>
-          </div>
-        </Container>
-      </div>
+              </Row>
+            </div>
+          </Container>
+        </div>
+      </>
     );
   }
 }
