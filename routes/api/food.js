@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const db = require("../../models/");
-const { isLoggedIn, LoggedIn } = require("../../config/forceinout");
 
 // matches /api/foodPage
 router.get("/", (req, res) => {

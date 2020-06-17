@@ -1,5 +1,4 @@
 const express = require("express");
-const dotenv = require("dotenv");
 const passport = require("passport");
 const session = require("express-session");
 const mongoose = require("mongoose");

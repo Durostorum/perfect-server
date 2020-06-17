@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "../../Components/Navbar";
 import API from "../../utils/API";
 import Carousel from "../../Components/Carousel";
 import { Col, Row, Container } from "../../Components/Grid";
@@ -253,7 +252,6 @@ class Detail extends Component {
   render() {
     return (
       <>
-        <Navbar />
         <div className="body">
           <Container fluid>
             <div>

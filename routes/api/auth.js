@@ -3,12 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 
 /* Session middleware */
-const { isLoggedIn, LoggedIn } = require("../../config/forceinout");
-
-// router.get("/logout", isLoggedIn, (req, res) => {
-//   req.logout();
-//   res.redirect("/login");
-// });
+// const { isLoggedIn, LoggedIn } = require("../../config/forceinout");
 
 /* facebook login */
 router.get(
@@ -20,6 +15,19 @@ router.get(
 router.get(
   "/auth/facebook/callback",
   passport.authenticate("facebook", {
+    successRedirect: "http://localhost:3005/drinkfood",
+    failureRedirect: "http://localhost:3005/login",
+  })
+);
+
+// google login
+router.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
     successRedirect: "http://localhost:3005/drinkfood",
     failureRedirect: "http://localhost:3005/login",
   })

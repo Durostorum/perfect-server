@@ -13,6 +13,7 @@ import API from "./utils/API";
 import DrinkFoodPage from "./Pages/DrinkFoodPage";
 import foodpage from "./Pages/FoodPage/index";
 import drinkpage from "./Pages/DrinkPage";
+import Register from "./Pages/RegisterPage";
 import Login from "./Pages/LogInPage";
 import Navbar from "./Components/Navbar";
 import MainPage from "./Pages/MainPage";
@@ -50,6 +51,7 @@ class App extends Component {
                 />
               )}
             />
+            <Route exact path="/register" component={Register} />
             <ProtectedRoute exact path="/foodpage/:id" component={MainPage} />
             <Route
               exact

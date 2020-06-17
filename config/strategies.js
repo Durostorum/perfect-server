@@ -1,37 +1,82 @@
-// const localStrategy = require("passport-local").Strategy;
+const localStrategy = require("passport-local").Strategy;
 const facebookStrategy = require("passport-facebook");
+const googleStrategy = require("passport-google-oauth20");
 const key = require("./keys");
+const validPassword = require("../config/passwordUtils").validPassword;
 
 // Load User Model
 const UserModel = require("../models/user-model");
 
 module.exports = (passport) => {
-  // passport.use(
-  //   new localStrategy(
-  //     {
-  //       usernameField: "email",
-  //     },
-  //     (email, password, done) => {
-  //       UserModel.findOne({ email }).then((user) => {
-  //         if (!user) {
-  //           return done(null, false, {
-  //             message: "That email is not registered",
-  //           });
-  //         }
+  passport.use(
+    new localStrategy(
+      {
+        usernameField: "email",
+      },
+      (email, password, done) => {
+        UserModel.findOne({ email })
+          .then((user) => {
+            if (!user) {
+              return done(null, false);
+            }
 
-  //         // Compare password
-  //         bcrypt.compare(password, user.password, (err, isFound) => {
-  //           if (err) throw err;
-  //           if (isFound) {
-  //             return done(null, user);
-  //           } else {
-  //             return done(null, false, { message: "Your Password incorrect" });
-  //           }
-  //         });
-  //       });
-  //     }
-  //   )
-  // );
+            const isValid = validPassword(password, user.hash, user.salt);
+
+            if (isValid) {
+              return done(null, user);
+            } else {
+              return done(null, false);
+            }
+          })
+          .catch((err) => done(err));
+      }
+    )
+  );
+
+  passport.use(
+    new googleStrategy(
+      {
+        clientID: key.google.clientID,
+        clientSecret: key.google.clientSecret,
+        callbackURL: "/auth/google/callback",
+      },
+      function (accessToken, refreshToken, profile, done) {
+        console.log("FROM GOOGLE LOG IN PROFILE", profile);
+        const {
+          _json: { email, name },
+        } = profile;
+        const userData = {
+          accessToken,
+          email,
+          name,
+          provider: profile.provider,
+        };
+
+        UserModel.findOne({ email }).then((user) => {
+          if (user) {
+            return done(null, user);
+          }
+
+          // Hash user password
+          const newUser = UserModel({
+            name: userData.name,
+            email: userData.email,
+            provider: userData.provider,
+            accessToken: userData.accessToken,
+          });
+
+          newUser
+            .save()
+            .then((user) => {
+              console.log(user);
+              // res.redirect("/drinkfood");
+            })
+            .catch((err) => console.log(err));
+          return done(null, user);
+        });
+      }
+    )
+  );
 
   passport.use(
     new facebookStrategy(

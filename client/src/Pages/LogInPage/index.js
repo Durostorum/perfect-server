@@ -50,7 +50,7 @@ class LoginForm extends Component {
                         <MDBIcon fab className="fa-twitter white-text fa-lg" />
                       </a>
                       <a
-                        href="/api/auth/google/redirect"
+                        href="http://localhost:3001/auth/google"
                         className="fa-lg p-2 m-2 gplus-ic"
                         onClick={this.googleAuth}
                       >

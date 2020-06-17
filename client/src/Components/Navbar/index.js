@@ -10,21 +10,28 @@ class Navbar extends Component {
       userName: "",
       user: "",
       isAuthed: this.props.isAuthed,
+      loggedOut: false,
     };
   }
-  componentWillUpdate = (prevProps) => {
+  componentDidUpdate = (prevProps) => {
+    // Checks if received props match current props
     if (prevProps.isAuthed !== this.props.isAuthed) {
-      this.setState({ value: this.props.isAuthed });
+      this.setState({ isAuthed: this.props.isAuthed });
     }
-    console.log("FRom component did update", this.state.isAuthed);
+    //Checking if LogOut was clicked then call /api/logout
+    if (!prevProps.loggedOut !== this.state.loggedOut) {
+      API.logingOut();
+    }
   };
-
+  handleLogOut = () => {
+    this.setState({ loggedOut: true });
+  };
   render() {
-    console.log("NAVBAAAAR nav component", this.props.isAuthed);
+    let isLoggedOut = this.state.loggedOut;
     let isLoggedIn = this.props.isAuthed;
     let toLogOut = (
       <li key={this.state.isAuthed} className="nav-item">
-        <Link className="nav-link active" to="/">
+        <Link onClick={this.handleLogOut} to="" className="nav-link active">
           Logout <span className="sr-only"></span>
         </Link>
       </li>
@@ -74,7 +81,7 @@ class Navbar extends Component {
                 Home <span className="sr-only">(current)</span>
               </Link>
             </li>
-            {isLoggedIn ? toLogOut : toLogIn}
+            {isLoggedIn && !isLoggedOut ? toLogOut : toLogIn}
           </ul>
         </div>
       </nav>
