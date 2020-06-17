@@ -1,6 +1,7 @@
 const localStrategy = require("passport-local").Strategy;
 const facebookStrategy = require("passport-facebook");
 const googleStrategy = require("passport-google-oauth20");
+const slackStrategy = require("passport-slack-oauth2").Strategy;
 const key = require("./keys");
 const validPassword = require("../config/passwordUtils").validPassword;
 
@@ -32,7 +33,41 @@ module.exports = (passport) => {
       }
     )
   );
-
+  passport.use(
+    new slackStrategy(
+      {
+        clientID: key.slack.clientID,
+        clientSecret: key.slack.clientSecret,
+        callbackURL: "/auth/slack/callback",
+      },
+      function (accessToken, refreshToken, profile, done) {
+        console.log("FROM slack LOG IN PROFILE", profile);
+        const { name, email } = profile.user;
+        const userData = {
+          accessToken,
+          email,
+          name,
+          provider: profile.provider,
+        };
+        UserModel.findOne({ email }).then((user) => {
+          if (user) {
+            return done(null, user);
+          }
+          const newUser = UserModel({
+            name: userData.name,
+            email: userData.email,
+            provider: userData.provider,
+            accessToken: userData.accessToken,
+          });
+          newUser
+            .save()
+            .then((user) => console.log(user))
+            .catch((err) => console.log(err));
+          return done(null, user);
+        });
+      }
+    )
+  );
   passport.use(
     new googleStrategy(
       {
@@ -57,7 +92,6 @@ module.exports = (passport) => {
             return done(null, user);
           }
 
-          // Hash user password
           const newUser = UserModel({
             name: userData.name,
             email: userData.email,

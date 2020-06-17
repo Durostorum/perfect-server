@@ -33,4 +33,18 @@ router.get(
   })
 );
 
+router.get("/auth/slack", passport.authorize("Slack"));
+
+router.get(
+  "/auth/slack/callback",
+  passport.authenticate("Slack", {
+    successRedirect: "http://localhost:3005/drinkfood",
+    failureRedirect: "http://localhost:3005/login",
+  }),
+  function (req, res) {
+    // Successful authentication, redirect home.
+    res.redirect("/");
+  }
+);
+
 module.exports = router;

@@ -46,7 +46,10 @@ class LoginForm extends Component {
                           className="white-text"
                         />
                       </a>
-                      <a href="#!" className="fa-lg p-2 m-2 tw-ic">
+                      <a
+                        href="http://localhost:3001/auth/slack"
+                        className="fa-lg p-2 m-2 tw-ic"
+                      >
                         <MDBIcon fab className="fa-twitter white-text fa-lg" />
                       </a>
                       <a
