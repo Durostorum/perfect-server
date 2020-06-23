@@ -1,19 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../../Components/Navbar";
 import "../../Pages/HomePage/homepage.css";
 
 class Jumbotron extends Component {
   render() {
     return (
       <div>
-        <Navbar />
-        <div className="row">
-          <div className="col-12">
-            {this.props.session && <h1>Hello, {this.props.session.name}</h1>}
-          </div>
-        </div>
-        ,
         <div className="jumbotron">
           <h2 className="welcome display-4">
             Welcome to the Perfect Server application

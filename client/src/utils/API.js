@@ -16,4 +16,13 @@ export default {
   fullMenu: function () {
     return axios.get("/api/foodpage/:id");
   },
+  logingOut: function () {
+    return axios.get("/api/logout");
+  },
+  registerUser: function (name, email, password) {
+    return axios.post("/api/register", { name, email, password });
+  },
+  getHistory: function (userId) {
+    return axios.get(`/api/order/history/${userId}`);
+  },
 };

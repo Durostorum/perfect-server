@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "../../Components/Navbar";
 import API from "../../utils/API";
 import Carousel from "../../Components/Carousel";
 import { Col, Row, Container } from "../../Components/Grid";
@@ -7,6 +6,7 @@ import List from "../../Components/Carlos/list";
 import Cart from "../../Components/Carlos/cart";
 import "../MainPage/MainPage.css";
 import Location from "../../Components/Location";
+import { Link } from "react-router-dom";
 
 import {
   MDBCard,
@@ -253,9 +253,8 @@ class Detail extends Component {
   render() {
     return (
       <>
-        <Navbar />
         <div className="body">
-          <Container fluid>
+          <div fluid className="container-fluid set-height">
             <div>
               <Row>
                 <Col size="md-2">
@@ -297,10 +296,15 @@ class Detail extends Component {
                             {" "}
                             <MDBIcon icon="phone" />
                           </a>
-                          <a className="icon">
+                          <Link
+                            className="icon"
+                            to={"/history/" + this.state.userId}
+                            onClick={this.showHistory}
+                          >
                             {" "}
-                            <MDBIcon far icon="images" />
-                          </a>
+                            <MDBIcon icon="history" />
+                          </Link>
+
                           <a className="icon" onClick={this.showCart}>
                             <MDBIcon icon="shopping-cart" />
                           </a>
@@ -358,7 +362,7 @@ class Detail extends Component {
               </Col> */}
               </Row>
             </div>
-          </Container>
+          </div>
         </div>
       </>
     );

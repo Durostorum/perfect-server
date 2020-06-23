@@ -17,6 +17,12 @@ const userSchema = new Schema({
   password: {
     type: String,
   },
+  salt: {
+    type: String,
+  },
+  hash: {
+    type: String,
+  },
   provider: {
     type: String,
   },

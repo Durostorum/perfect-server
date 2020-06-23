@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const db = require("../../models/");
-const { isLoggedIn, LoggedIn } = require("../../config/forceinout");
 
 // matches /api/foodPage
 router.get("/", (req, res) => {
@@ -12,7 +11,14 @@ router.get("/", (req, res) => {
 // matches /api/foodpage/:id
 router.route("/:id").get(function (req, res) {
   db.Menu.findById(req.params.id)
-    .then((dbModel) => res.json([dbModel, req.session.passport.user]))
+    .then((dbModel) => {
+      if (!req.session.passport.user) {
+        res.json(dbModel);
+      } else {
+        res.json([dbModel, req.session.passport.user]);
+      }
+    })
+
     .catch((err) => res.status(422).json(err));
 });
 

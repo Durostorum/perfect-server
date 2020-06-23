@@ -10,19 +10,22 @@ import {
   MDBCardBody,
   MDBInput,
   MDBIcon,
+  MDBBtn,
 } from "mdbreact";
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
   }
-
+  handleLogin = (provider) => {
+    window.location.assign(`http://localhost:3001/auth/${provider}`);
+  };
   render() {
     return (
       <>
         <div className="loginbody">
           {" "}
-          <MDBContainer>
+          <MDBContainer className="form-body">
             <MDBRow>
               <MDBCol md="6 offset-3">
                 <MDBCard>
@@ -32,45 +35,55 @@ class LoginForm extends Component {
                         Log in
                       </h3>
                     </MDBRow>
+                  </div>
+                  <MDBCardBody className="hi mx-4 mt-4">
                     <MDBRow className="mt-2 mb-3 d-flex justify-content-center">
                       <a
                         href="http://localhost:3001/auth/facebook"
-                        className="fa-lg p-2 m-2 fb-ic"
                         onClick={this.props.handleClick}
-                      >
-                        {/* <FacebookAuth /> */}
-                        <MDBIcon
-                          fab
-                          icon="facebook-f"
-                          size="lg"
-                          className="white-text"
-                        />
-                      </a>
-                      <a href="#!" className="fa-lg p-2 m-2 tw-ic">
-                        <MDBIcon fab className="fa-twitter white-text fa-lg" />
-                      </a>
-                      <a
-                        href="/api/auth/google/redirect"
-                        className="fa-lg p-2 m-2 gplus-ic"
-                        onClick={this.googleAuth}
+                      />
+
+                      <MDBBtn
+                        social="gplus"
+                        className="google-btn btns"
+                        size="lg"
+                        onClick={() => this.handleLogin("google")}
                       >
                         <MDBIcon
                           fab
-                          className="fa-google-plus-g white-text fa-lg"
+                          icon="google-plus-g  fa-lg"
+                          className="pr-3"
                         />
-                      </a>
+                        LOGIN WiTH Google
+                      </MDBBtn>
+                      <MDBBtn
+                        social="slack"
+                        size="lg"
+                        onClick={() => this.handleLogin("slack")}
+                        className="slack-btn btns"
+                      >
+                        <MDBIcon fab icon="slack fa-lg" className="pr-4" />
+                        LogIn with Slack
+                      </MDBBtn>
+                      <MDBBtn
+                        className="fb-btn btns"
+                        social="fb"
+                        size="lg"
+                        onClick={() => this.handleLogin("facebook")}
+                      >
+                        <MDBIcon fab icon="facebook-f fa-lg" className="pr-2" />{" "}
+                        Login With Facebook
+                      </MDBBtn>
                     </MDBRow>
-                  </div>
-                  <MDBCardBody className="hi mx-4 mt-4">
-                    <MDBInput label="Your email" group type="text" validate />
-                    <MDBInput
+
+                    {/* <MDBInput
                       label="Your password"
                       group
                       type="password"
                       validate
                       containerClass="mb-0"
-                    />
-                    <p className="hi font-small grey-text d-flex justify-content-end">
+                    /> */}
+                    {/* <p className="hi font-small grey-text d-flex justify-content-end">
                       Forgot
                       <a
                         href="#!"
@@ -78,8 +91,8 @@ class LoginForm extends Component {
                       >
                         Password?
                       </a>
-                    </p>
-                    <MDBRow className="d-flex align-items-center mb-4 mt-5">
+                    </p> */}
+                    {/* <MDBRow className="d-flex align-items-center mb-4 mt-5">
                       <MDBCol md="5" className="d-flex align-items-start">
                         <div className="text-center">
                           <Link
@@ -96,7 +109,7 @@ class LoginForm extends Component {
                         md="7"
                         className="d-flex justify-content-end"
                       ></MDBCol>
-                    </MDBRow>
+                    </MDBRow> */}
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
