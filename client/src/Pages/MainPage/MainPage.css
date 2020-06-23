@@ -12,6 +12,14 @@
   /* min-height: 84vh; */
 }
 
+#lblCartCount {
+  font-size: 12px;
+  background: #00ff407c;
+  color: #fff;
+  padding: 0 5px;
+  vertical-align: top;
+}
+
 .cartcard {
   background-color: rgba(0, 0, 0, 0.3);
   /* margin-left: 20%;
@@ -25,7 +33,7 @@
 .tooltip-mp {
   font-size: 13px;
 }
-a:hover {
+.icon-hover:hover {
   font-weight: bold;
   color: red !important;
 }

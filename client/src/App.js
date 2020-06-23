@@ -53,7 +53,11 @@ class App extends Component {
               )}
             />
             <Route exact path="/register" component={Register} />
-            <Route exact path="/history/:userId" component={HistoryPage} />
+            <Route
+              exact
+              path="/history/latest/:userId"
+              component={HistoryPage}
+            />
             <ProtectedRoute exact path="/foodpage/:id" component={MainPage} />
             <Route
               exact

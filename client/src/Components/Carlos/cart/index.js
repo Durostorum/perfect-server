@@ -18,6 +18,8 @@ class Cart extends Component {
       );
     }
 
+    const cartCount = this.props.cart;
+
     return (
       <div id="cart">
         <table class="table">
@@ -47,7 +49,7 @@ class Cart extends Component {
           </tbody>
         </table>
         <p>Total: ${this.total()}</p>
-        <button onClick={this.props.onClick}>Order</button>
+        <button onClick={this.props.onClick}>Save Order</button>
       </div>
     );
   }

@@ -23,6 +23,6 @@ export default {
     return axios.post("/api/register", { name, email, password });
   },
   getHistory: function (userId) {
-    return axios.get(`/api/order/history/${userId}`);
+    return axios.get(`/api/order/history/latest/${userId}`);
   },
 };

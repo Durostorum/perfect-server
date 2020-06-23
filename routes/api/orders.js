@@ -25,7 +25,7 @@ router.route("/:id").put(function (req, res) {
 });
 
 // path for /api/order/history
-router.route("/history/:userId").get((req, res) => {
+router.route("/history/latest/:userId").get((req, res) => {
   const userId = req.params.userId;
   db.Orders.findOne({ userId })
     .then((data) => {

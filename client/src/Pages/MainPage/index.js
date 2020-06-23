@@ -271,7 +271,7 @@ class Detail extends Component {
 
                       <MDBCardText>
                         <ul className="features-card-text">
-                          <a className="icon" onClick={this.display}>
+                          <a className="icon icon-hover" onClick={this.display}>
                             <Tooltip
                               arrow
                               placement="right"
@@ -293,7 +293,10 @@ class Detail extends Component {
                               next={this.nextStep}
                             />
                           )}
-                          <a className="icon" onClick={this.displayLocation}>
+                          <a
+                            className="icon icon-hover"
+                            onClick={this.displayLocation}
+                          >
                             <Tooltip
                               arrow
                               placement="right"
@@ -310,7 +313,7 @@ class Detail extends Component {
                             <Location location={this.state.address} />
                           )}
 
-                          <a className="icon">
+                          <a className="icon icon-hover">
                             {" "}
                             <Tooltip
                               arrow
@@ -326,8 +329,8 @@ class Detail extends Component {
                           </a>
 
                           <Link
-                            className="icon"
-                            to={"/history/" + this.state.userId}
+                            className="icon "
+                            to={"/history/latest/" + this.state.userId}
                             onClick={this.showHistory}
                           >
                             {" "}
@@ -346,7 +349,10 @@ class Detail extends Component {
                             </Tooltip>
                           </Link>
 
-                          <a className="icon" onClick={this.showCart}>
+                          <a
+                            className="icon icon-hover"
+                            onClick={this.showCart}
+                          >
                             <Tooltip
                               arrow
                               placement="right"
@@ -356,6 +362,14 @@ class Detail extends Component {
                             >
                               <MDBIcon icon="shopping-cart" />
                             </Tooltip>
+                            {this.state.cart.length > 0 ? (
+                              <span
+                                class="badge badge-warning"
+                                id="lblCartCount"
+                              >
+                                {this.state.cart.length}
+                              </span>
+                            ) : null}
                           </a>
                           {this.state.showCart && (
                             <Cart
