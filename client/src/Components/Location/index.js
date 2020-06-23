@@ -15,7 +15,6 @@ export default class Location extends Component {
           >
             Get directions via Google Maps
           </a>
-          {console.log("comes from location file", this.props.location)}
         </p>
       </div>
     );

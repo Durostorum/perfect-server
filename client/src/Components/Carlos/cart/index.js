@@ -10,16 +10,6 @@ class Cart extends Component {
   }
 
   render() {
-    if (this.props.items === 0) {
-      return (
-        <div id="cart">
-          <p>Cart is empty</p>
-        </div>
-      );
-    }
-
-    const cartCount = this.props.cart;
-
     return (
       <div id="cart">
         <table class="table">

@@ -1,18 +1,13 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import Carousel from "../../Components/Carousel";
-import { Col, Row, Container } from "../../Components/Grid";
+import { Col, Row } from "../../Components/Grid";
 import List from "../../Components/Carlos/list";
 import Cart from "../../Components/Carlos/cart";
 import "../MainPage/MainPage.css";
 import Location from "../../Components/Location";
 import { Link } from "react-router-dom";
 
-import {
-  createMuiTheme,
-  MuiThemeProvider,
-  withStyles,
-} from "@material-ui/core/styles";
 import Fade from "@material-ui/core/Fade";
 import Tooltip from "@material-ui/core/Tooltip";
 import {
@@ -20,7 +15,6 @@ import {
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
-  MDBCol,
   MDBIcon,
 } from "mdbreact";
 
@@ -144,7 +138,6 @@ class Detail extends Component {
         { current: current + 2, skipped: [...this.state.skipped, current] },
         () => {
           this.switchIt(current + 2);
-          console.log(selectedSteps.includes(current));
         }
       );
     } else {
@@ -152,7 +145,6 @@ class Detail extends Component {
         { current: current + 1, skipped: [...this.state.skipped, current] },
         () => {
           this.switchIt(current + 1);
-          console.log(selectedSteps.includes(current));
         }
       );
     }
@@ -204,14 +196,12 @@ class Detail extends Component {
         break;
 
       default:
-        console.log("switch case default");
         break;
     }
   };
 
   async componentDidMount() {
     let newState = this.props.location.state;
-    console.log("Lets see", newState);
     let { current } = this.state;
     this.setState({ ...newState }, () => {
       this.switchIt(current);
@@ -261,7 +251,7 @@ class Detail extends Component {
     return (
       <>
         <div className="body">
-          <div fluid className="container-fluid set-height">
+          <div className="container-fluid set-height">
             <div>
               <Row>
                 <Col size="md-2">
@@ -269,11 +259,13 @@ class Detail extends Component {
                     <MDBCardBody id="features-card">
                       <MDBCardTitle className="title">Features</MDBCardTitle>
 
-                      <MDBCardText>
-                        <ul className="features-card-text">
-                          <a className="icon icon-hover" onClick={this.display}>
+                      <ul className="features-card-text">
+                        <MDBCardText>
+                          <span
+                            className="icon icon-hover"
+                            onClick={this.display}
+                          >
                             <Tooltip
-                              arrow
                               placement="right"
                               TransitionComponent={Fade}
                               TransitionProps={{ timeout: 300 }}
@@ -285,7 +277,7 @@ class Detail extends Component {
                             >
                               <MDBIcon icon="book-open" />
                             </Tooltip>
-                          </a>
+                          </span>
                           {this.state.partMenu && (
                             <List
                               details={this.state.details}
@@ -293,12 +285,12 @@ class Detail extends Component {
                               next={this.nextStep}
                             />
                           )}
-                          <a
+                          <span
+                            href=""
                             className="icon icon-hover"
                             onClick={this.displayLocation}
                           >
                             <Tooltip
-                              arrow
                               placement="right"
                               TransitionComponent={Fade}
                               TransitionProps={{ timeout: 300 }}
@@ -308,15 +300,14 @@ class Detail extends Component {
                             >
                               <MDBIcon icon="globe-americas" />
                             </Tooltip>
-                          </a>
+                          </span>
                           {this.state.location && (
                             <Location location={this.state.address} />
                           )}
 
-                          <a className="icon icon-hover">
+                          <span href="" className="icon icon-hover">
                             {" "}
                             <Tooltip
-                              arrow
                               placement="right"
                               TransitionComponent={Fade}
                               TransitionProps={{ timeout: 300 }}
@@ -326,7 +317,7 @@ class Detail extends Component {
                             >
                               <MDBIcon icon="phone" />
                             </Tooltip>
-                          </a>
+                          </span>
 
                           <Link
                             className="icon "
@@ -335,7 +326,6 @@ class Detail extends Component {
                           >
                             {" "}
                             <Tooltip
-                              arrow
                               placement="right"
                               TransitionComponent={Fade}
                               TransitionProps={{ timeout: 300 }}
@@ -349,12 +339,12 @@ class Detail extends Component {
                             </Tooltip>
                           </Link>
 
-                          <a
+                          <span
+                            href="#"
                             className="icon icon-hover"
                             onClick={this.showCart}
                           >
                             <Tooltip
-                              arrow
                               placement="right"
                               TransitionComponent={Fade}
                               TransitionProps={{ timeout: 300 }}
@@ -364,13 +354,13 @@ class Detail extends Component {
                             </Tooltip>
                             {this.state.cart.length > 0 ? (
                               <span
-                                class="badge badge-warning"
+                                className="badge badge-warning"
                                 id="lblCartCount"
                               >
                                 {this.state.cart.length}
                               </span>
                             ) : null}
-                          </a>
+                          </span>
                           {this.state.showCart && (
                             <Cart
                               onClick={this.handlePurchase}
@@ -378,8 +368,8 @@ class Detail extends Component {
                               removeFromCart={this.removeFromCart}
                             />
                           )}
-                        </ul>
-                      </MDBCardText>
+                        </MDBCardText>
+                      </ul>
                     </MDBCardBody>
                   </MDBCard>
                 </Col>

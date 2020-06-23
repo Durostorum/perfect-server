@@ -1,6 +1,5 @@
 /* eslint-disable no-useless-constructor */
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "./loginform.css";
 import {
   MDBContainer,
@@ -8,7 +7,6 @@ import {
   MDBCol,
   MDBCard,
   MDBCardBody,
-  MDBInput,
   MDBIcon,
   MDBBtn,
 } from "mdbreact";
@@ -38,11 +36,6 @@ class LoginForm extends Component {
                   </div>
                   <MDBCardBody className="hi mx-4 mt-4">
                     <MDBRow className="mt-2 mb-3 d-flex justify-content-center">
-                      <a
-                        href="http://localhost:3001/auth/facebook"
-                        onClick={this.props.handleClick}
-                      />
-
                       <MDBBtn
                         social="gplus"
                         className="google-btn btns"
@@ -75,41 +68,6 @@ class LoginForm extends Component {
                         Login With Facebook
                       </MDBBtn>
                     </MDBRow>
-
-                    {/* <MDBInput
-                      label="Your password"
-                      group
-                      type="password"
-                      validate
-                      containerClass="mb-0"
-                    /> */}
-                    {/* <p className="hi font-small grey-text d-flex justify-content-end">
-                      Forgot
-                      <a
-                        href="#!"
-                        className="hi dark-grey-text ml-1 font-weight-bold"
-                      >
-                        Password?
-                      </a>
-                    </p> */}
-                    {/* <MDBRow className="d-flex align-items-center mb-4 mt-5">
-                      <MDBCol md="5" className="d-flex align-items-start">
-                        <div className="text-center">
-                          <Link
-                            onClick={this.login}
-                            className="btn btn-amber"
-                            to="/drinkfood"
-                            role="button"
-                          >
-                            Login
-                          </Link>
-                        </div>
-                      </MDBCol>
-                      <MDBCol
-                        md="7"
-                        className="d-flex justify-content-end"
-                      ></MDBCol>
-                    </MDBRow> */}
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
