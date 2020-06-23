@@ -23,4 +23,16 @@ router.route("/:id").put(function (req, res) {
     res.sendStatus(404);
   }
 });
+
+// path for /api/order/history
+router.route("/history/:userId").get((req, res) => {
+  const userId = req.params.userId;
+  db.Orders.findOne({ userId })
+    .then((data) => {
+      console.log("we found it HISTORYYYYYY ", data);
+      res.send(data);
+    })
+    .catch((err) => console.log(err));
+});
+
 module.exports = router;

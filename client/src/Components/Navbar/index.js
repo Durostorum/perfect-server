@@ -31,18 +31,13 @@ class Navbar extends Component {
     let isLoggedIn = this.props.isAuthed;
     let toLogOut = (
       <li key={this.state.isAuthed} className="nav-item">
-        <Link onClick={this.handleLogOut} to="" className="nav-link active">
+        <Link onClick={this.handleLogOut} to="/" className="nav-link active">
           Logout <span className="sr-only"></span>
         </Link>
       </li>
     );
     const toLogIn = (
       <>
-        <li className="nav-item ">
-          <Link className="nav-link active" to="/register">
-            Register
-          </Link>
-        </li>
         <li className="nav-item">
           <Link className="nav-link active" to="/login">
             Login <span className="sr-only"></span>

@@ -4,8 +4,6 @@ const passport = require("passport");
 const genPassword = require("../../config/passwordUtils").genPassword;
 // const isAuth = require("../../config/forceinout");
 
-const User = require("../../models/user-model");
-
 router.post(
   "/api/register",
   passport.authenticate("local", {
@@ -43,9 +41,10 @@ router.post("/api/register", (req, res) => {
   //   });
 });
 
-router.get("/logout", (req, res) => {
+router.get("/api/logout", (req, res) => {
+  req.session.destroy();
   req.logout();
-  res.redirect("");
+  // res.redirect("");
 });
 
 module.exports = router;

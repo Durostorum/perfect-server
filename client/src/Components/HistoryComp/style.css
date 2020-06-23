@@ -1,0 +1,126 @@
+/* .history-container {
+  width: auto;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+} */
+
+/* .container .cardh {
+  position: relative;
+  border-radius: 10px;
+} */
+
+.history-container .cardh .iconh {
+  top: 0;
+  right: 0;
+  left: 0;
+  justify-items: center;
+  transition: 0.7s;
+}
+
+/* .container .cardh:nth-child(1) .iconh {
+  background: #e07768;
+}
+
+.container .cardh:nth-child(2) .iconh {
+  background: #6eadd4;
+}
+
+.container .cardh:nth-child(3) .iconh {
+  background: #4aada9;
+} */
+
+.history-container .cardh .iconh .fa {
+  position: unset;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  transition: 0.7s;
+}
+
+.history-container .cardh .face {
+  width: 280px;
+  height: 140px;
+  transition: 0.5s;
+}
+
+.history-container .cardh .face.face1h {
+  position: relative;
+  background: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transform: translateY(100px);
+}
+
+.history-container .cardh:hover .face.face1h {
+  margin-top: 10px;
+  transform: translateY(0px);
+}
+
+.history-container .cardh .face.face1h .contenth {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.history-container .cardh:hover .face.face1h .contenth {
+  opacity: 1;
+  margin-top: -10px;
+}
+
+.history-container .cardh .face.face1h .contenth i {
+  margin-top: -10px;
+  max-width: 100px;
+}
+
+.history-container .cardh .face.face2h {
+  position: relative;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  transform: translateY(-100px);
+}
+
+.history-container .cardh:hover .face.face2h {
+  transform: translateY(0);
+}
+
+.history-container .cardh .face.face2h .contenth p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.history-container .cardh .face.face2h .contenth h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  text-align: center;
+}
+
+.history-container a {
+  text-decoration: none;
+}
+
+.history-comp {
+  background-image: url("https://www.singleplatform.com/wp-content/uploads/2018/12/5-Tips-for-Improving-Restaurant-Ambiance.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  display: -webkit-inline-flex;
+  width: 100%;
+}
+.history-container {
+  padding-left: 40px;
+  margin-left: 200px;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  padding-bottom: 4rem;
+  justify-content: space-between;
+}

@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import API from "./utils/API";
 // import SignUpPage from './Pages/SignUpPage';
+import HistoryPage from "./Pages/History";
 import DrinkFoodPage from "./Pages/DrinkFoodPage";
 import foodpage from "./Pages/FoodPage/index";
 import drinkpage from "./Pages/DrinkPage";
@@ -52,6 +53,7 @@ class App extends Component {
               )}
             />
             <Route exact path="/register" component={Register} />
+            <Route exact path="/history/:userId" component={HistoryPage} />
             <ProtectedRoute exact path="/foodpage/:id" component={MainPage} />
             <Route
               exact

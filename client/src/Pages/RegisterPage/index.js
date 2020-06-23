@@ -21,16 +21,17 @@ class Register extends Component {
     name: "",
     email: "",
     pasword: "",
+    password2: "",
   };
   handleInput = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  handleRegister = async () => {
+  handleRegister = () => {
+    alert("REGISTER STATE", this.state);
     let { name, email, password } = this.state;
     API.registerUser(name, email, password).then((user) =>
       console.log("SOMEHTIHSNASD")
     );
-    console.log("SOMEHTIHSNASD");
 
     window.location.href = "/";
   };
@@ -52,29 +53,38 @@ class Register extends Component {
                   </div>
                   <MDBCardBody className="hi mx-4 mt-4">
                     <MDBInput
-                      label="Name"
+                      value={this.state.name}
+                      onChange={this.handleInput}
                       name="name"
+                      label="Name"
                       group
                       type="text"
                       validate
                     />
                     <MDBInput
-                      label="Email"
-                      group
+                      value={this.state.email}
+                      onChange={this.handleInput}
                       name="email"
+                      group
+                      label="Email"
                       type="text"
                       validate
                     />
                     <MDBInput
+                      value={this.state.password}
+                      onChange={this.handleInput}
+                      name="password"
                       label="Password"
                       group
-                      name="password"
                       type="password"
                       validate
                       containerClass="mb-0"
                     />
                     <MDBInput
                       label="Confirm password"
+                      value={this.state.pasword2}
+                      name="password2"
+                      onChange={this.handleInput}
                       group
                       type="password"
                       validate

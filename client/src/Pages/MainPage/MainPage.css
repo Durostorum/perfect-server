@@ -1,11 +1,15 @@
 .body {
   background-image: url("https://www.singleplatform.com/wp-content/uploads/2018/12/5-Tips-for-Improving-Restaurant-Ambiance.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  display: -webkit-inline-flex;
-  padding-top: 1.2%;
+  background-color: #cccccc;
   width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  padding-bottom: 4rem;
+  padding-top: 1.2%;
+
+  /* min-height: 84vh; */
 }
 
 .cartcard {
