@@ -17,9 +17,7 @@ function Corousel(props) {
   return (
     <div>
       <MDBCol>
-        <Row>
-          <Col size="md-6">5050550</Col>
-        </Row>
+        <Row></Row>
 
         <MDBCard className="cardone">
           <MDBCardBody className="cardbody">
@@ -33,6 +31,11 @@ function Corousel(props) {
                         index === props.currentSlide && "active"
                       }`}
                     >
+                      <Col size="md-12">
+                        <span id="course-name">
+                          Top Features for :<h4> {props.courseName}</h4>
+                        </span>
+                      </Col>
                       <Youtube
                         className="youtube"
                         videoId={item.videoId}

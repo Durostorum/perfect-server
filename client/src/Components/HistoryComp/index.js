@@ -37,7 +37,10 @@ export default class HistoryComp extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="face face2h">
+                    <div
+                      className="face face2h"
+                      style={{ fontFamily: "Lobster Two" }}
+                    >
                       <div className="contenth">
                         <div>
                           <h4>{details.item}</h4>

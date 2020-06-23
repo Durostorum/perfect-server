@@ -22,9 +22,12 @@
 .hi {
   color: red;
 }
-
+.tooltip-mp {
+  font-size: 13px;
+}
 a:hover {
   font-weight: bold;
+  color: red !important;
 }
 
 .icon {
