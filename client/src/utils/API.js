@@ -8,7 +8,7 @@ export default {
     return axios.put("/api/order/" + id, order);
   },
   getUser: function () {
-    return axios.get("/api/menu/drinkfood");
+    return axios.get("/api/getuser");
   },
   getDetails: function (id) {
     return axios.get("/api/foodpage/" + id);
@@ -23,6 +23,6 @@ export default {
     return axios.post("/api/register", { name, email, password });
   },
   getHistory: function (userId) {
-    return axios.get(`/api/order/history/latest/${userId}`);
+    return axios.get(`/api/order/history/${userId}`);
   },
 };

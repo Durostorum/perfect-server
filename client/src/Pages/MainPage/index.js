@@ -44,12 +44,11 @@ class Detail extends Component {
   outside = (id) => {
     API.getDetails(id)
       .then((res) => {
-        console.log("WE ARE GETTING DETAILS", res);
-        // this.setState({
-        //   result: [...this.state.result, res.data[0]],
-        //   details: [...this.state.details, res.data[0]],
-        //   userId: res.data[1],
-        // });
+        this.setState({
+          result: [...this.state.result, res.data[0]],
+          details: [...this.state.details, res.data[0]],
+          userId: res.data[1],
+        });
       })
       .catch((err) => console.log(err));
   };

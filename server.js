@@ -17,7 +17,10 @@ require("./config/strategies")(passport);
 // Connect to mongoDB
 const MONGODB_URI = keys.Mongo.mongoURI || "mongodb://localhost/perfectServer";
 
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
 
 // Express Body parser
 app.use(express.urlencoded({ extended: true }));
