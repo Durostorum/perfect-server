@@ -12,10 +12,11 @@ router.get("/", (req, res) => {
 router.route("/:id").get(function (req, res) {
   db.Menu.findById(req.params.id)
     .then((dbModel) => {
+      console.log("WE ARE GETTING HERe", dbModel);
       if (!req.session.passport.user) {
-        res.json(dbModel);
+        res.send(dbModel);
       } else {
-        res.json([dbModel, req.session.passport.user]);
+        res.send([dbModel, req.session.passport.user]);
       }
     })
 

@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const https = require("https");
 const routes = require("./routes");
 var cors = require("cors");
+const keys = require("./config/keys");
 const PORT = process.env.PORT || 3001;
 
 const app = express();
@@ -14,8 +15,7 @@ app.use(cors());
 require("./config/strategies")(passport);
 
 // Connect to mongoDB
-const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost/perfectServer";
+const MONGODB_URI = keys.Mongo.mongoURI || "mongodb://localhost/perfectServer";
 
 mongoose.connect(MONGODB_URI);
 

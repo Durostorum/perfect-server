@@ -55,7 +55,7 @@ class App extends Component {
               path="/drinkfood"
               render={() => <DrinkFoodPage isAuthed={this.state.isAuthed} />}
             />
-            <ProtectedRoute exact path="/foodpage/:id" component={MainPage} />
+            <Route exact path="/foodpage/:id" component={MainPage} />
 
             <ProtectedRoute exact path="/foodpage" component={foodpage} />
             <Route exact path="/drinkpage" component={drinkpage} />
