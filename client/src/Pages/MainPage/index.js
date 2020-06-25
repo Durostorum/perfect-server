@@ -261,6 +261,7 @@ class Detail extends Component {
 
                       <ul className="features-card-text">
                         <MDBCardText>
+
                           <Tooltip
                             className="tooltipStyle"
                             arrow
@@ -279,6 +280,7 @@ class Detail extends Component {
                               <MDBIcon icon="book-open" />
                             </div>
                           </Tooltip>
+
                           {this.state.partMenu && (
                             <List
                               details={this.state.details}
@@ -286,6 +288,7 @@ class Detail extends Component {
                               next={this.nextStep}
                             />
                           )}
+
                           <Tooltip
                             className="tooltipStyle"
                             arrow
@@ -357,6 +360,7 @@ class Detail extends Component {
                               {this.state.cart.length}
                             </span>
                           ) : null}
+
                           {this.state.showCart && (
                             <Cart
                               onClick={this.handlePurchase}

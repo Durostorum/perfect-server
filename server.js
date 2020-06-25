@@ -7,6 +7,7 @@ const keys = require("./config/keys");
 const https = require("https");
 const routes = require("./routes");
 var cors = require("cors");
+const keys = require("./config/keys");
 const PORT = process.env.PORT || 3001;
 
 const app = express();

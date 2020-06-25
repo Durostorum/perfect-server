@@ -13,9 +13,6 @@ import {
 } from "mdbreact";
 
 class DrinkFood extends Component {
-  constructor() {
-    super();
-  }
   state = {
     userName: "",
   };
@@ -26,7 +23,6 @@ class DrinkFood extends Component {
         if (res.data.user === undefined) {
           window.location.href = "login";
         } else {
-          console.log("Res data exists", res.data);
           this.setState({ userName: res.data.user });
         }
       })
