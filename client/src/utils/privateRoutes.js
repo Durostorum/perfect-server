@@ -3,8 +3,10 @@ import { Redirect, Route } from "react-router-dom";
 import API from "../utils/API";
 
 let userData = API.getUser().then((res) => {
-  userData = res.headers.access_token;
-  console.log(res.headers.access_token);
+  if (res.headers.access_token) {
+    userData = res.headers.access_token;
+  }
+  userData = undefined;
 });
 
 export const ProtectedRoute = ({
@@ -16,7 +18,7 @@ export const ProtectedRoute = ({
     <Route
       {...rest}
       render={(props) =>
-        userData ? <Component {...props} /> : <Redirect to="/login" />
+        !userData ? <Component {...props} /> : <Redirect to="/login" />
       }
     />
   );

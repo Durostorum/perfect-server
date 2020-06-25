@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import Youtube from "react-youtube";
 import "./style.css";
 export default class HistoryComp extends Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     vidWidth: "280",
     vidHeight: "140",
@@ -23,7 +20,7 @@ export default class HistoryComp extends Component {
           <div className="container history-container">
             <div className="row">
               {orderDetails.map((details, index) => (
-                <div className="col-4">
+                <div className="col-4" key={index}>
                   <div className="cardh">
                     <div className="face face1h">
                       <div className="contenth">
@@ -37,10 +34,13 @@ export default class HistoryComp extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="face face2h">
+                    <div
+                      className="face face2h"
+                      style={{ fontFamily: "Lobster Two" }}
+                    >
                       <div className="contenth">
                         <div>
-                          <h4>{details.item}</h4>
+                          <h4 className="history-iName">{details.item}</h4>
                         </div>
                         <h6 className="description">{details.description}</h6>
                       </div>

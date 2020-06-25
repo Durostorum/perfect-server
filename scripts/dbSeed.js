@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const db = require("../models");
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/perfectServer"
-);
+const keys = require("../config/keys");
+mongoose.connect(keys.Mongo.mongoURI || "mongodb://localhost/perfectServer");
 
 // require("./drinkPairings")(db);
 // require("./foodPairings")(db);

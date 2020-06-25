@@ -56,3 +56,9 @@ h5 {
 .parent {
   background-image: url("http://digitalimagemakerworld.com/images/peach-wallpaper/37756779-peach-wallpaper.jpg");
 }
+
+#course-name {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}

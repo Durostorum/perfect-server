@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import Carousel from "../../Components/Carousel";
-import { Col, Row, Container } from "../../Components/Grid";
+import { Col, Row } from "../../Components/Grid";
 import List from "../../Components/Carlos/list";
 import Cart from "../../Components/Carlos/cart";
 import "../MainPage/MainPage.css";
 import Location from "../../Components/Location";
 import { Link } from "react-router-dom";
 
+import Fade from "@material-ui/core/Fade";
+import Tooltip from "@material-ui/core/Tooltip";
 import {
   MDBCard,
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
-  MDBCol,
   MDBIcon,
 } from "mdbreact";
 
@@ -30,7 +31,7 @@ class Detail extends Component {
     fullMenu: false,
     fullMenuResults: [],
     collapseID: "",
-    name: "",
+    courseName: "",
     details: [],
     address: "7535 N Kendall Drive Unit 2510, Miami FL",
     location: false,
@@ -137,7 +138,6 @@ class Detail extends Component {
         { current: current + 2, skipped: [...this.state.skipped, current] },
         () => {
           this.switchIt(current + 2);
-          console.log(selectedSteps.includes(current));
         }
       );
     } else {
@@ -145,7 +145,6 @@ class Detail extends Component {
         { current: current + 1, skipped: [...this.state.skipped, current] },
         () => {
           this.switchIt(current + 1);
-          console.log(selectedSteps.includes(current));
         }
       );
     }
@@ -154,7 +153,7 @@ class Detail extends Component {
     switch (step) {
       case 1:
         try {
-          this.setState({ name: "Appetizers" });
+          this.setState({ courseName: "Appetizers" });
           this.state.apetizers.forEach((main) => {
             this.outside(main);
           });
@@ -165,7 +164,7 @@ class Detail extends Component {
 
       case 2:
         try {
-          this.setState({ name: "Main Course" });
+          this.setState({ courseName: "Entrees" });
           this.state.mainCourses.forEach((main) => {
             this.outside(main);
           });
@@ -176,7 +175,7 @@ class Detail extends Component {
 
       case 3:
         try {
-          this.setState({ name: "Desserts" });
+          this.setState({ courseName: "Desserts" });
           this.state.desserts.forEach((main) => {
             this.outside(main);
           });
@@ -187,7 +186,7 @@ class Detail extends Component {
 
       case 4:
         try {
-          this.setState({ name: "Drinks" });
+          this.setState({ courseName: "Drinks" });
           this.state.drinks.forEach((main) => {
             this.outside(main);
           });
@@ -197,14 +196,12 @@ class Detail extends Component {
         break;
 
       default:
-        console.log("switch case default");
         break;
     }
   };
 
   async componentDidMount() {
     let newState = this.props.location.state;
-    console.log("Lets see", newState);
     let { current } = this.state;
     this.setState({ ...newState }, () => {
       this.switchIt(current);
@@ -254,7 +251,7 @@ class Detail extends Component {
     return (
       <>
         <div className="body">
-          <div fluid className="container-fluid set-height">
+          <div className="container-fluid set-height">
             <div>
               <Row>
                 <Col size="md-2">
@@ -262,11 +259,25 @@ class Detail extends Component {
                     <MDBCardBody id="features-card">
                       <MDBCardTitle className="title">Features</MDBCardTitle>
 
-                      <MDBCardText>
-                        <ul className="features-card-text">
-                          <a className="icon" onClick={this.display}>
-                            <MDBIcon icon="book-open" />
-                          </a>
+                      <ul className="features-card-text">
+                        <MDBCardText>
+                          <span
+                            className="icon icon-hover"
+                            onClick={this.display}
+                          >
+                            <Tooltip
+                              placement="right"
+                              TransitionComponent={Fade}
+                              TransitionProps={{ timeout: 300 }}
+                              title={
+                                <span className="tooltip-mp">
+                                  {"More " + this.state.courseName}
+                                </span>
+                              }
+                            >
+                              <MDBIcon icon="book-open" />
+                            </Tooltip>
+                          </span>
                           {this.state.partMenu && (
                             <List
                               details={this.state.details}
@@ -274,40 +285,82 @@ class Detail extends Component {
                               next={this.nextStep}
                             />
                           )}
-                          <a className="icon" onClick={this.displayLocation}>
-                            <MDBIcon icon="globe-americas" />
-                          </a>
+                          <span
+                            href=""
+                            className="icon icon-hover"
+                            onClick={this.displayLocation}
+                          >
+                            <Tooltip
+                              placement="right"
+                              TransitionComponent={Fade}
+                              TransitionProps={{ timeout: 300 }}
+                              title={
+                                <span className="tooltip-mp">Find us Here</span>
+                              }
+                            >
+                              <MDBIcon icon="globe-americas" />
+                            </Tooltip>
+                          </span>
                           {this.state.location && (
                             <Location location={this.state.address} />
                           )}
 
-                          {/* <a>
-                          <MDBIcon icon="address-book" /> Reservations
-                        </a>
-                        <a>
-                          {" "}
-                          <MDBIcon icon="user-check" /> Reviews
-                        </a> */}
-                          <a className="icon">
-                            <MDBIcon icon="cocktail" />
-                          </a>
-
-                          <a className="icon">
+                          <span href="" className="icon icon-hover">
                             {" "}
-                            <MDBIcon icon="phone" />
-                          </a>
+                            <Tooltip
+                              placement="right"
+                              TransitionComponent={Fade}
+                              TransitionProps={{ timeout: 300 }}
+                              title={
+                                <span className="tooltip-mp">Contact Us</span>
+                              }
+                            >
+                              <MDBIcon icon="phone" />
+                            </Tooltip>
+                          </span>
+
                           <Link
-                            className="icon"
-                            to={"/history/" + this.state.userId}
+                            className="icon "
+                            to={"/history/latest/" + this.state.userId}
                             onClick={this.showHistory}
                           >
                             {" "}
-                            <MDBIcon icon="history" />
+                            <Tooltip
+                              placement="right"
+                              TransitionComponent={Fade}
+                              TransitionProps={{ timeout: 300 }}
+                              title={
+                                <span className="tooltip-mp">
+                                  See Last Order
+                                </span>
+                              }
+                            >
+                              <MDBIcon icon="history" />
+                            </Tooltip>
                           </Link>
 
-                          <a className="icon" onClick={this.showCart}>
-                            <MDBIcon icon="shopping-cart" />
-                          </a>
+                          <span
+                            href="#"
+                            className="icon icon-hover"
+                            onClick={this.showCart}
+                          >
+                            <Tooltip
+                              placement="right"
+                              TransitionComponent={Fade}
+                              TransitionProps={{ timeout: 300 }}
+                              title={<span className="tooltip-mp">Cart</span>}
+                            >
+                              <MDBIcon icon="shopping-cart" />
+                            </Tooltip>
+                            {this.state.cart.length > 0 ? (
+                              <span
+                                className="badge badge-warning"
+                                id="lblCartCount"
+                              >
+                                {this.state.cart.length}
+                              </span>
+                            ) : null}
+                          </span>
                           {this.state.showCart && (
                             <Cart
                               onClick={this.handlePurchase}
@@ -315,8 +368,8 @@ class Detail extends Component {
                               removeFromCart={this.removeFromCart}
                             />
                           )}
-                        </ul>
-                      </MDBCardText>
+                        </MDBCardText>
+                      </ul>
                     </MDBCardBody>
                   </MDBCard>
                 </Col>
@@ -325,6 +378,7 @@ class Detail extends Component {
                 <div>
                   <Col size="md-10">
                     <Carousel
+                      courseName={this.state.courseName}
                       next={this.nextStep}
                       addToCart={this.addToCart}
                       result={this.state.result}

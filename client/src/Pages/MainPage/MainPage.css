@@ -8,23 +8,28 @@
   display: flex;
   padding-bottom: 4rem;
   padding-top: 1.2%;
+}
 
-  /* min-height: 84vh; */
+#lblCartCount {
+  font-size: 12px;
+  background: #00ff407c;
+  color: #fff;
+  padding: 0 5px;
+  vertical-align: top;
 }
 
 .cartcard {
   background-color: rgba(0, 0, 0, 0.3);
-  /* margin-left: 20%;
-  padding-top: 3%;
-  padding-right: 3%;
-  margin-right: 2.5%; */
 }
 .hi {
   color: red;
 }
-
-a:hover {
+.tooltip-mp {
+  font-size: 13px;
+}
+.icon-hover:hover {
   font-weight: bold;
+  color: red !important;
 }
 
 .icon {
@@ -33,15 +38,12 @@ a:hover {
   padding-bottom: 10px;
   display: block;
   font-size: 20px;
-  /* text-align: justify; */
   color: white;
 }
 .menucard {
   background-color: rgba(0, 0, 0, 0.3);
   float: left;
   margin-left: 0px;
-  /* width: 150%;
-  margin: 0; */
 }
 
 .features-card-text,
@@ -50,15 +52,6 @@ a:hover {
   color: white;
 }
 .cart-title {
-  /* text-align: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  place-content: center;
-  
-  margin: auto;
-  */
-  /* padding-left: 3.5rem; */
   color: white;
 }
 ul {
