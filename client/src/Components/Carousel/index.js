@@ -33,7 +33,7 @@ function Corousel(props) {
                     >
                       <Col size="md-12">
                         <span id="course-name">
-                          Top Features for :<h4> {props.courseName}</h4>
+                          Top Features for :<bold> {props.courseName}</bold>
                         </span>
                       </Col>
                       <Youtube
@@ -77,7 +77,7 @@ function Corousel(props) {
 
                       <MDBBtn
                         className="peach-gradient"
-                        onClick={(event) => {
+                        onClick={() => {
                           props.next();
                         }}
                       >

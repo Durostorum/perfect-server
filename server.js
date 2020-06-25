@@ -3,6 +3,7 @@ const passport = require("passport");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const keys = require("./config/keys");
 const https = require("https");
 const routes = require("./routes");
 var cors = require("cors");
@@ -14,10 +15,12 @@ app.use(cors());
 require("./config/strategies")(passport);
 
 // Connect to mongoDB
-const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost/perfectServer";
+const MONGODB_URI = keys.Mongo.mongoURI || "mongodb://localhost/perfectServer";
 
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
 
 // Express Body parser
 app.use(express.urlencoded({ extended: true }));
@@ -41,6 +44,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use("/", require("./routes/api/auth"));
+app.use("/", require("./routes/api/user"));
 app.use(routes);
 
 // Send every other request to the React app

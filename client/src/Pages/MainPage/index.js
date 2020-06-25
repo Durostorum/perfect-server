@@ -1,18 +1,13 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import Carousel from "../../Components/Carousel";
-import { Col, Row, Container } from "../../Components/Grid";
+import { Col, Row } from "../../Components/Grid";
 import List from "../../Components/Carlos/list";
 import Cart from "../../Components/Carlos/cart";
 import "../MainPage/MainPage.css";
 import Location from "../../Components/Location";
 import { Link } from "react-router-dom";
 
-import {
-  createMuiTheme,
-  MuiThemeProvider,
-  withStyles,
-} from "@material-ui/core/styles";
 import Fade from "@material-ui/core/Fade";
 import Tooltip from "@material-ui/core/Tooltip";
 import {
@@ -20,7 +15,6 @@ import {
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
-  MDBCol,
   MDBIcon,
 } from "mdbreact";
 
@@ -144,7 +138,6 @@ class Detail extends Component {
         { current: current + 2, skipped: [...this.state.skipped, current] },
         () => {
           this.switchIt(current + 2);
-          console.log(selectedSteps.includes(current));
         }
       );
     } else {
@@ -152,7 +145,6 @@ class Detail extends Component {
         { current: current + 1, skipped: [...this.state.skipped, current] },
         () => {
           this.switchIt(current + 1);
-          console.log(selectedSteps.includes(current));
         }
       );
     }
@@ -204,14 +196,12 @@ class Detail extends Component {
         break;
 
       default:
-        console.log("switch case default");
         break;
     }
   };
 
   async componentDidMount() {
     let newState = this.props.location.state;
-    console.log("Lets see", newState);
     let { current } = this.state;
     this.setState({ ...newState }, () => {
       this.switchIt(current);
@@ -261,7 +251,7 @@ class Detail extends Component {
     return (
       <>
         <div className="body">
-          <div fluid className="container-fluid set-height">
+          <div className="container-fluid set-height">
             <div>
               <Row>
                 <Col size="md-2">
@@ -269,23 +259,26 @@ class Detail extends Component {
                     <MDBCardBody id="features-card">
                       <MDBCardTitle className="title">Features</MDBCardTitle>
 
-                      <MDBCardText>
-                        <ul className="features-card-text">
-                          <a className="icon" onClick={this.display}>
-                            <Tooltip
-                              arrow
-                              placement="right"
-                              TransitionComponent={Fade}
-                              TransitionProps={{ timeout: 300 }}
-                              title={
-                                <span className="tooltip-mp">
-                                  {"More " + this.state.courseName}
-                                </span>
-                              }
+                      <ul className="features-card-text">
+                        <MDBCardText>
+                          <Tooltip
+                            className="tooltipStyle"
+                            arrow
+                            placement="right"
+                            TransitionProps={{ timeout: 300 }}
+                            title={
+                              <span className="tooltip-mp">
+                                {"More " + this.state.courseName}
+                              </span>
+                            }
+                          >
+                            <div
+                              className="icon icon-hover"
+                              onClick={this.display}
                             >
                               <MDBIcon icon="book-open" />
-                            </Tooltip>
-                          </a>
+                            </div>
+                          </Tooltip>
                           {this.state.partMenu && (
                             <List
                               details={this.state.details}
@@ -293,70 +286,77 @@ class Detail extends Component {
                               next={this.nextStep}
                             />
                           )}
-                          <a className="icon" onClick={this.displayLocation}>
-                            <Tooltip
-                              arrow
-                              placement="right"
-                              TransitionComponent={Fade}
-                              TransitionProps={{ timeout: 300 }}
-                              title={
-                                <span className="tooltip-mp">Find us Here</span>
-                              }
+                          <Tooltip
+                            className="tooltipStyle"
+                            arrow
+                            placement="right"
+                            TransitionProps={{ timeout: 300 }}
+                            title={
+                              <span className="tooltip-mp">Find Us Here</span>
+                            }
+                          >
+                            <div
+                              className="icon icon-hover"
+                              onClick={this.displayLocation}
                             >
                               <MDBIcon icon="globe-americas" />
-                            </Tooltip>
-                          </a>
+                            </div>
+                          </Tooltip>
                           {this.state.location && (
                             <Location location={this.state.address} />
                           )}
-
-                          <a className="icon">
-                            {" "}
-                            <Tooltip
-                              arrow
-                              placement="right"
-                              TransitionComponent={Fade}
-                              TransitionProps={{ timeout: 300 }}
-                              title={
-                                <span className="tooltip-mp">Contact Us</span>
-                              }
-                            >
-                              <MDBIcon icon="phone" />
-                            </Tooltip>
-                          </a>
-
-                          <Link
-                            className="icon"
-                            to={"/history/" + this.state.userId}
-                            onClick={this.showHistory}
+                          <Tooltip
+                            className="tooltipStyle"
+                            arrow
+                            placement="right"
+                            TransitionProps={{ timeout: 300 }}
+                            title={
+                              <span className="tooltip-mp">Contact Us</span>
+                            }
                           >
-                            {" "}
-                            <Tooltip
-                              arrow
-                              placement="right"
-                              TransitionComponent={Fade}
-                              TransitionProps={{ timeout: 300 }}
-                              title={
-                                <span className="tooltip-mp">
-                                  See Last Order
-                                </span>
-                              }
+                            <div className="icon icon-hover">
+                              <MDBIcon icon="phone" />
+                            </div>
+                          </Tooltip>
+                          <Tooltip
+                            className="tooltipStyle"
+                            arrow
+                            placement="right"
+                            TransitionProps={{ timeout: 300 }}
+                            title={
+                              <span className="tooltip-mp">See Last Order</span>
+                            }
+                          >
+                            <Link
+                              className="icon "
+                              to={"/history/latest/" + this.state.userId}
+                              onClick={this.showHistory}
                             >
                               <MDBIcon icon="history" />
-                            </Tooltip>
-                          </Link>
-
-                          <a className="icon" onClick={this.showCart}>
-                            <Tooltip
-                              arrow
-                              placement="right"
-                              TransitionComponent={Fade}
-                              TransitionProps={{ timeout: 300 }}
-                              title={<span className="tooltip-mp">Cart</span>}
+                            </Link>
+                          </Tooltip>
+                          <Tooltip
+                            className="tooltipStyle"
+                            arrow
+                            placement="right"
+                            TransitionProps={{ timeout: 300 }}
+                            title={<span className="tooltip-mp">Cart</span>}
+                          >
+                            <div
+                              className="icon icon-hover"
+                              onClick={this.showCart}
                             >
                               <MDBIcon icon="shopping-cart" />
-                            </Tooltip>
-                          </a>
+                            </div>
+                          </Tooltip>
+                          {this.state.cart.length > 0 ? (
+                            <span
+                              className="badge badge-warning"
+                              id="lblCartCount"
+                            >
+                              {this.state.cart.length}
+                            </span>
+                          ) : null}
                           {this.state.showCart && (
                             <Cart
                               onClick={this.handlePurchase}
@@ -364,8 +364,8 @@ class Detail extends Component {
                               removeFromCart={this.removeFromCart}
                             />
                           )}
-                        </ul>
-                      </MDBCardText>
+                        </MDBCardText>
+                      </ul>
                     </MDBCardBody>
                   </MDBCard>
                 </Col>

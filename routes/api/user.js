@@ -41,10 +41,10 @@ router.post("/api/register", (req, res) => {
   //   });
 });
 
-router.get("/api/logout", (req, res) => {
-  req.session.destroy();
-  req.logout();
-  // res.redirect("");
-});
+// router.get("/api/logout", (req, res) => {
+//   req.session.destroy();
+//   req.logout();
+//   // res.redirect("");
+// });
 
 module.exports = router;

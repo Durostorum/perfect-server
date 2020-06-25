@@ -1,4 +1,5 @@
 .youtube {
+  margin-top: 20px;
   width: 980px;
   height: 400px;
 }
@@ -21,19 +22,21 @@
 .arrow-icons {
   font-size: 40px;
 }
-.arrow-icons:hover {
+.arrow-icons:hover,
+.addbtn:hover {
   color: #b5fa99;
   cursor: pointer;
 }
+bold {
+  font-size: 22px;
+}
 .addbtn {
+  margin-left: -100px;
   font-size: 30px;
   padding-top: 3%;
   padding-right: 80%;
 }
-.addbtn:hover {
-  color: #df5f49;
-  cursor: pointer;
-}
+
 .row {
   text-align: center !important ;
 }
@@ -58,6 +61,7 @@ h5 {
 }
 
 #course-name {
+  padding-bottom: 20px;
   color: #fff;
   font-size: 18px;
   font-weight: 600;

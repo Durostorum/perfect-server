@@ -52,8 +52,11 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/history/:userId" component={HistoryPage} />
+            <ProtectedRoute
+              exact
+              path="/history/latest/:userId"
+              component={HistoryPage}
+            />
             <ProtectedRoute exact path="/foodpage/:id" component={MainPage} />
             <Route
               exact
@@ -61,7 +64,6 @@ class App extends Component {
               render={() => <DrinkFoodPage isAuthed={this.state.isAuthed} />}
             />
             <ProtectedRoute exact path="/foodpage" component={foodpage} />
-            <Route exact path="/drinkpage" component={drinkpage} />
           </Switch>
         </div>
         <Footer />
