@@ -1,6 +1,5 @@
 /* eslint-disable no-useless-constructor */
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "./loginform.css";
 import {
   MDBContainer,
@@ -8,7 +7,6 @@ import {
   MDBCol,
   MDBCard,
   MDBCardBody,
-  MDBInput,
   MDBIcon,
   MDBBtn,
 } from "mdbreact";
@@ -38,11 +36,6 @@ class LoginForm extends Component {
                   </div>
                   <MDBCardBody className="hi mx-4 mt-4">
                     <MDBRow className="mt-2 mb-3 d-flex justify-content-center">
-                      <a
-                        href="http://localhost:3001/auth/facebook"
-                        onClick={this.props.handleClick}
-                      />
-
                       <MDBBtn
                         social="gplus"
                         className="google-btn btns"

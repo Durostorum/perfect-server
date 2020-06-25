@@ -13,9 +13,6 @@ import {
 } from "mdbreact";
 
 class DrinkFood extends Component {
-  constructor() {
-    super();
-  }
   state = {
     userName: "",
   };

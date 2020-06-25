@@ -5,9 +5,6 @@ import API from "../../utils/API";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 export default class History extends Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     lastOrder: "",
     mostOrdered: "",

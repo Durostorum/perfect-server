@@ -1,6 +1,5 @@
 /* eslint-disable no-useless-constructor */
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "./registerform.css";
 import API from "../../utils/API";
 import {
@@ -10,7 +9,6 @@ import {
   MDBCard,
   MDBCardBody,
   MDBInput,
-  MDBIcon,
 } from "mdbreact";
 
 class Register extends Component {

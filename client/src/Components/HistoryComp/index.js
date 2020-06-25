@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import Youtube from "react-youtube";
 import "./style.css";
 export default class HistoryComp extends Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     vidWidth: "280",
     vidHeight: "140",

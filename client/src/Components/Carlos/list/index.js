@@ -23,8 +23,7 @@ export default class List extends Component {
                 <tr key={index}>
                   <td>
                     <AddButton
-                      className="addbutton"
-                      id={item._id}
+                      id="addFromList"
                       value={item}
                       addToCart={this.props.addToCart}
                     />

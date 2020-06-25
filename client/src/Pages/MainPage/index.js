@@ -8,7 +8,6 @@ import "../MainPage/MainPage.css";
 import Location from "../../Components/Location";
 import { Link } from "react-router-dom";
 
-import Fade from "@material-ui/core/Fade";
 import Tooltip from "@material-ui/core/Tooltip";
 import {
   MDBCard,
@@ -347,16 +346,17 @@ class Detail extends Component {
                               onClick={this.showCart}
                             >
                               <MDBIcon icon="shopping-cart" />
+                              {this.state.cart.length > 0 ? (
+                                <span
+                                  className="badge badge-warning"
+                                  id="lblCartCount"
+                                >
+                                  {this.state.cart.length}
+                                </span>
+                              ) : null}
                             </div>
                           </Tooltip>
-                          {this.state.cart.length > 0 ? (
-                            <span
-                              className="badge badge-warning"
-                              id="lblCartCount"
-                            >
-                              {this.state.cart.length}
-                            </span>
-                          ) : null}
+
                           {this.state.showCart && (
                             <Cart
                               onClick={this.handlePurchase}
