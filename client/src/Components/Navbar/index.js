@@ -18,13 +18,10 @@ class Navbar extends Component {
     if (prevProps.isAuthed !== this.props.isAuthed) {
       this.setState({ isAuthed: this.props.isAuthed });
     }
-    //Checking if LogOut was clicked then call /api/logout
-    if (!prevProps.loggedOut !== this.state.loggedOut) {
-      API.logingOut();
-    }
   };
   handleLogOut = () => {
     this.setState({ loggedOut: true });
+    API.logingOut();
   };
   render() {
     let isLoggedOut = this.state.loggedOut;

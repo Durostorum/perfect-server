@@ -46,19 +46,24 @@ class App extends Component {
                 />
               )}
             />
-            <Route
+
+            <ProtectedRoute
+
               exact
               path="/history/latest/:userId"
               component={HistoryPage}
             />
-            <Route exact path="/foodpage/:id" component={MainPage} />
+
+            <ProtectedRoute exact path="/foodpage/:id" component={MainPage} />
+
+            
+
             <Route
               exact
               path="/drinkfood"
               render={() => <DrinkFoodPage isAuthed={this.state.isAuthed} />}
             />
             <ProtectedRoute exact path="/foodpage" component={foodpage} />
-            <Route exact path="/drinkpage" component={drinkpage} />
           </Switch>
         </div>
         <Footer />

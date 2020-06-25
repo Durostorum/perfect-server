@@ -21,25 +21,28 @@ function Corousel(props) {
 
         <MDBCard className="cardone">
           <MDBCardBody className="cardbody">
-            <div className="bd-example">
-              <div>
-                {props.result.map((item, index) => (
-                  <div
-                    key={`slide-${index}`}
-                    className={`carousel-item ${
-                      index === props.currentSlide && "active"
-                    }`}
-                  >
-                    <Col size="md-12">
-                      <span id="course-name">
-                        Top Features for :<h4> {props.courseName}</h4>
-                      </span>
-                    </Col>
-                    <Youtube
-                      className="youtube"
-                      videoId={item.videoId}
-                      alt="..."
-                    />
+
+            <MDBCardText>
+              <div className="bd-example">
+                <div>
+                  {props.result.map((item, index) => (
+                    <div
+                      key={`slide-${index}`}
+                      className={`carousel-item ${
+                        index === props.currentSlide && "active"
+                      }`}
+                    >
+                      <Col size="md-12">
+                        <span id="course-name">
+                          Top Features for :<bold> {props.courseName}</bold>
+                        </span>
+                      </Col>
+                      <Youtube
+                        className="youtube"
+                        videoId={item.videoId}
+                        alt="..."
+                      />
+
 
                     <div className="container carosel-container">
                       <div className="row">
@@ -71,6 +74,18 @@ function Corousel(props) {
                           />
                         </div>
                       </div>
+
+                      <span className="p">{item.description}</span>
+
+                      <MDBBtn
+                        className="peach-gradient"
+                        onClick={() => {
+                          props.next();
+                        }}
+                      >
+                        Next Category
+                      </MDBBtn>
+
                     </div>
                     <span className="p">{item.description}</span>
 

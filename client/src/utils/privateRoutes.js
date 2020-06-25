@@ -5,6 +5,7 @@ import API from "../utils/API";
 let userData = API.getUser().then((res) => {
   if (res.headers.access_token) {
     userData = res.headers.access_token;
+
   }
   userData = undefined;
 });

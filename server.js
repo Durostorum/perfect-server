@@ -3,6 +3,7 @@ const passport = require("passport");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const keys = require("./config/keys");
 const https = require("https");
 const routes = require("./routes");
 var cors = require("cors");
@@ -44,6 +45,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use("/", require("./routes/api/auth"));
+app.use("/", require("./routes/api/user"));
 app.use(routes);
 
 // Send every other request to the React app

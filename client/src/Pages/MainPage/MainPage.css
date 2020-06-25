@@ -24,16 +24,18 @@
 .hi {
   color: red;
 }
+.tooltipStyle {
+  margin-right: 20px;
+}
 .tooltip-mp {
   font-size: 13px;
 }
 .icon-hover:hover {
-  font-weight: bold;
+
   color: red !important;
 }
 
 .icon {
-  text-align: left;
   padding-top: 10px;
   padding-bottom: 10px;
   display: block;

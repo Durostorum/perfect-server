@@ -261,23 +261,26 @@ class Detail extends Component {
 
                       <ul className="features-card-text">
                         <MDBCardText>
-                          <span
-                            className="icon icon-hover"
-                            onClick={this.display}
+
+                          <Tooltip
+                            className="tooltipStyle"
+                            arrow
+                            placement="right"
+                            TransitionProps={{ timeout: 300 }}
+                            title={
+                              <span className="tooltip-mp">
+                                {"More " + this.state.courseName}
+                              </span>
+                            }
                           >
-                            <Tooltip
-                              placement="right"
-                              TransitionComponent={Fade}
-                              TransitionProps={{ timeout: 300 }}
-                              title={
-                                <span className="tooltip-mp">
-                                  {"More " + this.state.courseName}
-                                </span>
-                              }
+                            <div
+                              className="icon icon-hover"
+                              onClick={this.display}
                             >
                               <MDBIcon icon="book-open" />
-                            </Tooltip>
-                          </span>
+                            </div>
+                          </Tooltip>
+
                           {this.state.partMenu && (
                             <List
                               details={this.state.details}
@@ -285,82 +288,79 @@ class Detail extends Component {
                               next={this.nextStep}
                             />
                           )}
-                          <span
-                            href=""
-                            className="icon icon-hover"
-                            onClick={this.displayLocation}
+
+                          <Tooltip
+                            className="tooltipStyle"
+                            arrow
+                            placement="right"
+                            TransitionProps={{ timeout: 300 }}
+                            title={
+                              <span className="tooltip-mp">Find Us Here</span>
+                            }
                           >
-                            <Tooltip
-                              placement="right"
-                              TransitionComponent={Fade}
-                              TransitionProps={{ timeout: 300 }}
-                              title={
-                                <span className="tooltip-mp">Find us Here</span>
-                              }
+                            <div
+                              className="icon icon-hover"
+                              onClick={this.displayLocation}
                             >
                               <MDBIcon icon="globe-americas" />
-                            </Tooltip>
-                          </span>
+                            </div>
+                          </Tooltip>
                           {this.state.location && (
                             <Location location={this.state.address} />
                           )}
-
-                          <span href="" className="icon icon-hover">
-                            {" "}
-                            <Tooltip
-                              placement="right"
-                              TransitionComponent={Fade}
-                              TransitionProps={{ timeout: 300 }}
-                              title={
-                                <span className="tooltip-mp">Contact Us</span>
-                              }
-                            >
-                              <MDBIcon icon="phone" />
-                            </Tooltip>
-                          </span>
-
-                          <Link
-                            className="icon "
-                            to={"/history/latest/" + this.state.userId}
-                            onClick={this.showHistory}
+                          <Tooltip
+                            className="tooltipStyle"
+                            arrow
+                            placement="right"
+                            TransitionProps={{ timeout: 300 }}
+                            title={
+                              <span className="tooltip-mp">Contact Us</span>
+                            }
                           >
-                            {" "}
-                            <Tooltip
-                              placement="right"
-                              TransitionComponent={Fade}
-                              TransitionProps={{ timeout: 300 }}
-                              title={
-                                <span className="tooltip-mp">
-                                  See Last Order
-                                </span>
-                              }
+                            <div className="icon icon-hover">
+                              <MDBIcon icon="phone" />
+                            </div>
+                          </Tooltip>
+                          <Tooltip
+                            className="tooltipStyle"
+                            arrow
+                            placement="right"
+                            TransitionProps={{ timeout: 300 }}
+                            title={
+                              <span className="tooltip-mp">See Last Order</span>
+                            }
+                          >
+                            <Link
+                              className="icon "
+                              to={"/history/latest/" + this.state.userId}
+                              onClick={this.showHistory}
                             >
                               <MDBIcon icon="history" />
-                            </Tooltip>
-                          </Link>
-
-                          <span
-                            href="#"
-                            className="icon icon-hover"
-                            onClick={this.showCart}
+                            </Link>
+                          </Tooltip>
+                          <Tooltip
+                            className="tooltipStyle"
+                            arrow
+                            placement="right"
+                            TransitionProps={{ timeout: 300 }}
+                            title={<span className="tooltip-mp">Cart</span>}
                           >
-                            <Tooltip
-                              placement="right"
-                              TransitionComponent={Fade}
-                              TransitionProps={{ timeout: 300 }}
-                              title={<span className="tooltip-mp">Cart</span>}
+                            <div
+                              className="icon icon-hover"
+                              onClick={this.showCart}
                             >
                               <MDBIcon icon="shopping-cart" />
-                            </Tooltip>
-                            {this.state.cart.length > 0 ? (
-                              <span
-                                className="badge badge-warning"
-                                id="lblCartCount"
-                              >
-                                {this.state.cart.length}
-                              </span>
-                            ) : null}
-                          </span>
+                            </div>
+                          </Tooltip>
+                          {this.state.cart.length > 0 ? (
+                            <span
+                              className="badge badge-warning"
+                              id="lblCartCount"
+                            >
+                              {this.state.cart.length}
+                            </span>
+                          ) : null}
+
                           {this.state.showCart && (
                             <Cart
                               onClick={this.handlePurchase}
