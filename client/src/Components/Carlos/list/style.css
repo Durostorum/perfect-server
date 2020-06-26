@@ -1,3 +1,9 @@
-.addbutton {
-  font-size: inherit;
+#listButton {
+  font-size: 22px;
+  margin-top: 10px;
+}
+
+#listButton:hover {
+  cursor: pointer;
+  color: #b5fa99;
 }

@@ -13,7 +13,6 @@ export default class History extends Component {
   };
   componentDidMount() {
     API.getHistory(this.props.match.params.userId).then((res) => {
-
       this.setState({ lastOrder: res.data.latestOrder, loaded: true });
       if (this.state.lastOrder) {
         this.state.lastOrder.map((ids) => this.findItem(ids));
@@ -23,7 +22,6 @@ export default class History extends Component {
   }
   findItem = (id) => {
     API.getDetails(id).then((res) => {
-
       this.setState({
         orderDetails: [...this.state.orderDetails, res.data[0]],
       });

@@ -21,7 +21,6 @@ function Corousel(props) {
 
         <MDBCard className="cardone">
           <MDBCardBody className="cardbody">
-
             <MDBCardText>
               <div className="bd-example">
                 <div>
@@ -43,38 +42,37 @@ function Corousel(props) {
                         alt="..."
                       />
 
-
-                    <div className="container carosel-container">
-                      <div className="row">
-                        <div className="col col-md-2">
-                          <MDBIcon
-                            className="arrow-icons"
-                            onClick={props.onPrevious}
-                            icon="angle-left"
-                          />
-                        </div>
-                        <div className="col col-md-2">
-                          <h5 className="item-name">{item.item}</h5>
-                        </div>
-                        <div className="col col-md-2">
-                          <MDBIcon
-                            className="arrow-icons"
-                            onClick={(event) => {
-                              props.onNext();
-                            }}
-                            icon="angle-right"
-                          />
-                        </div>
-                        <div className="col col-md-2">
-                          <AddButton
-                            classname="addbtn"
-                            id={item._id}
-                            value={item}
-                            addToCart={props.addToCart}
-                          />
+                      <div className="container carosel-container">
+                        <div class="row">
+                          <div className="col col-md-2">
+                            <MDBIcon
+                              className="arrow-icons"
+                              onClick={props.onPrevious}
+                              icon="angle-left"
+                            />
+                          </div>
+                          <div className="col col-md-2">
+                            <h5 className="item-name">{item.item}</h5>
+                          </div>
+                          <div className="col col-md-2">
+                            <MDBIcon
+                              className="arrow-icons"
+                              onClick={(event) => {
+                                props.onNext();
+                              }}
+                              icon="angle-right"
+                            />
+                          </div>
+                          <div className="col col-md-2">
+                            <AddButton
+                              classname="addbtn"
+                              id={item._id}
+                              value={item}
+                              addToCart={props.addToCart}
+                            />
+                          </div>
                         </div>
                       </div>
-
                       <span className="p">{item.description}</span>
 
                       <MDBBtn
@@ -85,23 +83,12 @@ function Corousel(props) {
                       >
                         Next Category
                       </MDBBtn>
-
                     </div>
-                    <span className="p">{item.description}</span>
-
-                    <MDBBtn
-                      className="peach-gradient"
-                      onClick={(event) => {
-                        props.next();
-                      }}
-                    >
-                      Next Category
-                    </MDBBtn>
-                  </div>
-                  // ArrowButtons(item)
-                ))}
+                    // ArrowButtons(item)
+                  ))}
+                </div>
               </div>
-            </div>
+            </MDBCardText>
           </MDBCardBody>
         </MDBCard>
       </MDBCol>

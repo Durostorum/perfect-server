@@ -41,6 +41,7 @@ module.exports = (passport) => {
         callbackURL: "/auth/slack/callback",
       },
       function (accessToken, refreshToken, profile, done) {
+        console.log("FROM slack LOG IN PROFILE", profile);
         const { name, email } = profile.user;
         const userData = {
           accessToken,
@@ -75,6 +76,7 @@ module.exports = (passport) => {
         callbackURL: "/auth/google/callback",
       },
       function (accessToken, refreshToken, profile, done) {
+        console.log("FROM GOOGLE LOG IN PROFILE", profile);
         const {
           _json: { email, name },
         } = profile;
@@ -156,7 +158,7 @@ module.exports = (passport) => {
   );
 
   passport.serializeUser((user, done) => {
-    done(null, user);
+    done(null, user.id);
   });
 
   passport.deserializeUser((id, done) => {

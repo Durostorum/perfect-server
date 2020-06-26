@@ -48,9 +48,9 @@ class foodpage extends Component {
           <h2>Choose a food category:</h2>
         </div>
         {this.state.foodPairings.map((food, index) => (
-          <div key={index} className="card1 col-3 offset-">
-            <MDBCol>
-              <MDBCard style={{ width: "21rem" }}>
+          <div className="card1 col-3 offset-">
+            <MDBCol className="">
+              <MDBCard key={food._id} style={{ width: "21rem" }}>
                 <MDBCardImage
                   className="img-fluid"
                   src={food.image}

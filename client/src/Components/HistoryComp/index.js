@@ -20,7 +20,7 @@ export default class HistoryComp extends Component {
           <div className="container history-container">
             <div className="row">
               {orderDetails.map((details, index) => (
-                <div className="col-4" key={index}>
+                <div className="col-4">
                   <div className="cardh">
                     <div className="face face1h">
                       <div className="contenth">
@@ -40,7 +40,7 @@ export default class HistoryComp extends Component {
                     >
                       <div className="contenth">
                         <div>
-                          <h4 className="history-iName">{details.item}</h4>
+                          <h4>{details.item}</h4>
                         </div>
                         <h6 className="description">{details.description}</h6>
                       </div>
