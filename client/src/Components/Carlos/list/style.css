@@ -1,9 +1,9 @@
-#listButton {
-  font-size: 22px;
-  margin-top: 10px;
+#addFromList {
+  margin-top: 12px;
+  padding: auto;
+  font-size: 24px;
 }
-
-#listButton:hover {
-  cursor: pointer;
+#addFromList:hover {
   color: #b5fa99;
+  cursor: pointer;
 }

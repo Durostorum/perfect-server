@@ -1,5 +1,12 @@
+#address {
+  font-family: "Libre Baskerville", serif;
+  color: #fff;
+  font-size: 1rem;
+}
 #location {
   font-family: "Libre Baskerville", serif;
+  color: cadetblue;
+  font-size: 1rem;
 }
 #location:link {
   text-decoration: underline;
