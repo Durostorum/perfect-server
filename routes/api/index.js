@@ -3,6 +3,8 @@ const foodRoutes = require("./food");
 const orderRoutes = require("./orders");
 const menuRoutes = require("./menu");
 const path = require("path");
+// // Menu routes
+// router.use("/menu", vsRoutes);
 
 // Food Routes
 router.use("/foodpage", foodRoutes);
@@ -13,5 +15,8 @@ router.use("/order", orderRoutes);
 router.use(function (req, res) {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
+
+// // Drinks Routes
+// router.use("/", drinksRoutes);
 
 module.exports = router;

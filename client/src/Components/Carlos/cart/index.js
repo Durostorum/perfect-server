@@ -10,6 +10,14 @@ class Cart extends Component {
   }
 
   render() {
+    if (this.props.items === 0) {
+      return (
+        <div id="cart">
+          <p>Cart is empty</p>
+        </div>
+      );
+    }
+
     return (
       <div id="cart">
         <table class="table">
@@ -39,7 +47,7 @@ class Cart extends Component {
           </tbody>
         </table>
         <p>Total: ${this.total()}</p>
-        <button onClick={this.props.onClick}>Save Order</button>
+        <button onClick={this.props.onClick}>Order</button>
       </div>
     );
   }

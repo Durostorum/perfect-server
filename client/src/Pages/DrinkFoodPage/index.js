@@ -23,6 +23,7 @@ class DrinkFood extends Component {
         if (res.data.user === undefined) {
           window.location.href = "login";
         } else {
+          console.log("Res data exists", res.data);
           this.setState({ userName: res.data.user });
         }
       })

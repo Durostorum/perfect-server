@@ -45,15 +45,14 @@
   height: 140px;
   transition: 0.5s;
 }
-.history-iName {
-  padding-top: 5px;
-}
+
 .history-container .cardh .face.face1h {
   position: relative;
   background: #333;
   display: flex;
   justify-content: center;
   align-items: center;
+
   transform: translateY(100px);
 }
 
@@ -90,7 +89,6 @@
 }
 
 .history-container .cardh:hover .face.face2h {
-  margin-top: 10px;
   transform: translateY(0);
   opacity: 0.9;
 }

@@ -8,7 +8,7 @@ export default {
     return axios.put("/api/order/" + id, order);
   },
   getUser: function () {
-    return axios.get("/api/getuser");
+    return axios.get("/api/menu/drinkfood");
   },
   getDetails: function (id) {
     return axios.get("/api/foodpage/" + id);
