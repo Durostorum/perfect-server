@@ -1,9 +1,9 @@
-#addFromList {
+#listButton {
   margin-top: 12px;
   padding: auto;
   font-size: 24px;
 }
-#addFromList:hover {
+#listButton:hover {
   color: #b5fa99;
   cursor: pointer;
 }
